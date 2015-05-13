@@ -14,13 +14,13 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test 'should log in' do
-    post :create, session: {email: @user.email, password: 'admin'}
+    post :create, session: {email: @user.email, password: 'admin', remember_me: '0'}
     assert_redirected_to root_url
     assert is_logged_in?
   end
 
   test 'should not log in' do
-    post :create, session: {email: @user.email, password: 'password'}
+    post :create, session: {email: @user.email, password: 'password', remember_me: '0'}
     assert_template 'sessions/new'
     assert_not is_logged_in?
   end
@@ -31,4 +31,6 @@ class SessionsControllerTest < ActionController::TestCase
     assert_redirected_to root_url
     assert_not is_logged_in?
   end
+
+
 end
