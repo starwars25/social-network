@@ -1,21 +1,13 @@
 <% provide(:title, 'Register') %>
 <%= form_for @user do |f| %>
     <%= f.label 'Username' %>
-    <p id="hint"></p>
+    <span id="hint"></span>
     <%= f.text_field :username %>
     <%= f.label 'Email' %>
     <%= f.email_field :email %>
+    <%= f.label 'Password' %>
+    <%= f.password_field :password %>
+    <%= f.label 'Password confirmation' %>
+    <%= f.password_field :password_confirmation %>
     <%= f.submit 'Submit' %>
 <% end %>
-
-<script>
-//    var usrInput = document.getElementById("user_username");
-//    usrInput.onchange = function () {
-//        if (usrInput.value.length < 4 || usrInput.value.length > 20) {
-//            document.getElementById("hint").innerHTML = "ТЫ БЛЯТЬ ЮЗЕР КРИВОРУКИЙ СУКА";
-//        }
-//        else {
-//            document.getElementById("hint").innerHTML = "";
-//        }
-//    }
-</script>

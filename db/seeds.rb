@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create!(username: 'admin', email: 'a.starwars.d@gmail.com')
+User.create!(username: 'admin', email: 'a.starwars.d@gmail.com', password: 'admin', password_confirmation: 'admin')
 
 10.times do |i|
-  User.create!(username: "development-user-#{i}", email: "development-user-email-#{i}@gmail.com")
+  User.create!(username: "development-user-#{i}", email: "development-user-email-#{i}@gmail.com", password: 'password', password_confirmation: 'password')
 end
