@@ -1,3 +1,10 @@
 <% provide(:title, 'Home') %>
 <h1>Landing page</h1>
+<div id="info">
+  <% if logged_in? %>
+    <h1>You are logged in.</h1>
+  <% else %>
+    <h1>You are not logged in.</h1>
+  <% end %>
+</div>
 <%= render @users %>
