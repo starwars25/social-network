@@ -14,8 +14,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_difference 'User.count', 1 do
       post :create, user: {username: 'foobar', email: 'foobar@foo.com', password: 'password', password_confirmation: 'password'}
     end
-    assert flash[:success] == 'User successfully created.'
-    assert_redirected_to root_url
   end
 
   test 'should not register' do

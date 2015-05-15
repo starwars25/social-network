@@ -13,5 +13,9 @@ class ActiveSupport::TestCase
   def log_in_as(user, password = nil)
     post :create, session: {email: user.email, password: password || 'password'}
   end
+
+  def log_in_intergration(user, password = nil)
+    post login_path, session: {email: user.email, password: password || 'password'}
+  end
   # Add more helper methods to be used by all tests here...
 end
