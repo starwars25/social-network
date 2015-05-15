@@ -4,4 +4,6 @@ admin:
   username: admin
   email: a.starwars.d@gmail.com
   password_digest: <%= User.digest('admin') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
