@@ -24,7 +24,7 @@ class AddingFriendsTest < ActionDispatch::IntegrationTest
     assert_template 'users/show'
     assert_select 'form'
     assert_difference 'FriendRequest.count', 1 do
-      post friend_requests_path, friend_request: {from_id: @user_one.id, to_id: @user_two.id}
+      post friend_requests_path, from_id: @user_one.id, to_id: @user_two.id
     end
     assert_redirected_to user_path(@user_two)
     assert FriendRequest.requested?(@user_one, @user_two)
