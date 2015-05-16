@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX, multiline: true}, uniqueness: {case_sensitive: false}
   has_secure_password
   validates :password, length: {minimum: 4}
+  has_many :friendship_relations, class_name: 'Friendship', foreign_key: 'to_id', dependent: :destroy
+  has_many :friends, through: 'friendship_relations', source: :from_friend
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
