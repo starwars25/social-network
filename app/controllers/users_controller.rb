@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :is_logged_in?
+  before_action :is_logged_in?, only: [:show]
   def new
     @user = User.new
   end

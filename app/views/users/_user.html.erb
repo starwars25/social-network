@@ -1,6 +1,6 @@
 <div id="user-<%= user.id %>">
   <ul>
-    <li><%= user.username %></li>
+    <li><%= link_to user.username, user %></li>
     <li><%= user.email %></li>
   </ul>
 </div>
