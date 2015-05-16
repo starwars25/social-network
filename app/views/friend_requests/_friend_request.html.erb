@@ -1,0 +1,11 @@
+<div id="request">
+  <ul>
+    <li>From: <%= friend_request.from.username %></li>
+    <li>Email: <%= friend_request.from.email %></li>
+  </ul>
+  <%= form_for(friend_request) do |f| %>
+      <%= f.radio_button 'choice', 'accept' %>
+      <%= f.radio_button 'choice', 'deny' %>
+      <%= f.submit %>
+  <% end %>
+</div>
