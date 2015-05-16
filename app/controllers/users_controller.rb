@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
-
+  before_action :is_logged_in?
   def new
     @user = User.new
+  end
+
+  def show
+    @user = User.find_by(id: params[:id])
   end
 
   def create
@@ -19,5 +23,9 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
+
+  def is_logged_in?
+    redirect_to login_url unless logged_in?
   end
 end
