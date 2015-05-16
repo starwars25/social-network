@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   resources :users
   resources :account_activations, only: [:edit]
-  resources :password_resets, only: [:new, :edit, :create, :destroy]
+  resources :password_resets, only: [:new, :edit, :create, :update]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
