@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+  def User.friends?(user_one, user_two)
+    user_one.is_friend?(user_two) && user_two.is_friend?(user_one)
+  end
+
   def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
@@ -48,6 +52,26 @@ class User < ActiveRecord::Base
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
+
+  def make_friends(user)
+    raise 'Already friends' if User.friends?(self, user)
+    Friendship.create(from_id: self.id, to_id: user.id)
+    Friendship.create(from_id: user.id, to_id: self.id)
+  end
+
+  def unfriend(user)
+    raise 'Not a friend' unless is_friend?(user)
+    id = Friendship.where('from_id = (?) AND to_id = (?)', self.id, user.id)[0].id
+    Friendship.find_by(id: id).destroy
+    id = Friendship.where('from_id = (?) AND to_id = (?)', user.id, self.id)[0].id
+    Friendship.find_by(id: id).destroy
+    # Friendship.where(from_id: self.id, to_id: user.id).destroy
+  end
+
+  def is_friend?(user)
+    friends.include? user
+  end
+
 
   private
   def downcase

@@ -7,3 +7,18 @@ admin:
   activated: true
   activated_at: <%= Time.zone.now %>
 
+
+user_one:
+  username: user_one
+  email: user_one@gmail.com
+  password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+
+user_two:
+  username: user_two
+  email: user_two@gmail.com
+  password_digest: <%= User.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
