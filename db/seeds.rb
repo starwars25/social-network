@@ -13,10 +13,14 @@ User.create!(username: 'admin', email: 'a.starwars.d@gmail.com', password: 'admi
   User.create!(username: "development-user-#{i}", email: "development-user-email-#{i}@gmail.com", password: 'password', password_confirmation: 'password', activated: true, activated_at: Time.zone.now)
 end
 
-counter = 0
-User.all.each do |user|
-  break if counter == 5
-  next if user.username == 'admin'
-  User.find_by(username: 'admin').make_friends user
-  counter += 1
+# counter = 0
+# User.all.each do |user|
+#   break if counter == 5
+#   next if user.username == 'admin'
+#   User.find_by(username: 'admin').make_friends user
+#   counter += 1
+# end
+
+(3..5).each do |i|
+  FriendRequest.create!(from_id: i, to_id: 1)
 end

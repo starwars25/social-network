@@ -1,5 +1,6 @@
 <h1>Name: <%= @current_user.username %></h1>
 <h2>Email: <%= @current_user.email %></h2>
+<h1>Friend requests</h1>
 <% if @current_user.friend_requests.any? %>
     <%= render @current_user.friend_requests %>
 <% end %>

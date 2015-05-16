@@ -3,9 +3,13 @@
     <li>From: <%= friend_request.from.username %></li>
     <li>Email: <%= friend_request.from.email %></li>
   </ul>
-  <%= form_for(friend_request) do |f| %>
-      <%= f.radio_button 'choice', 'accept' %>
+  <%= form_for(:friend_request, url: friend_request_path(friend_request.id), method: :patch) do |f| %>
+      <%= hidden_field_tag :from_id, friend_request.from.id %>
+      <%= hidden_field_tag :to_id, friend_request.to.id %>
+      <%= f.label 'Accept' %>
+      <%= f.radio_button 'choice', 'accept', checked: true %>
+      <%= f.label 'Deny' %>
       <%= f.radio_button 'choice', 'deny' %>
-      <%= f.submit %>
+      <%= f.submit 'Submit' %>
   <% end %>
 </div>
