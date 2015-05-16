@@ -12,3 +12,9 @@ User.create!(username: 'admin', email: 'a.starwars.d@gmail.com', password: 'admi
 10.times do |i|
   User.create!(username: "development-user-#{i}", email: "development-user-email-#{i}@gmail.com", password: 'password', password_confirmation: 'password', activated: true, activated_at: Time.zone.now)
 end
+
+
+User.all.each do |user|
+  next if user.username == 'admin'
+  User.find_by(username: 'admin').make_friends user
+end

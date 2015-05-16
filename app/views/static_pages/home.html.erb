@@ -7,4 +7,7 @@
     <h1>You are not logged in.</h1>
   <% end %>
 </div>
+<% if logged_in? %>
+    <%= render 'static_pages/friends' %>
+<% end %>
 <%= render @users %>
