@@ -10,11 +10,12 @@ class AddingFriendsTest < ActionDispatch::IntegrationTest
     @user_two = users(:user_two)
   end
 
-  test 'login, visit user, send request, accept request' do
-    get root_url
-    assert_template 'static_pages/home'
-    get login_url
-    assert_template 'sessions/new'
+  test 'login, visit user, send request, accept request, and then delete friend' do
+
+    # get root_url
+    # assert_template 'static_pages/home'
+    # get login_url
+    # assert_template 'sessions/new'
     post login_url, session: {email: @user_one.email, password: 'password'}
     assert_redirected_to root_url
     follow_redirect!
@@ -45,11 +46,18 @@ class AddingFriendsTest < ActionDispatch::IntegrationTest
     assert @user_one.is_friend?(@user_two)
     assert @user_two.is_friend?(@user_one)
     assert_not FriendRequest.requested?(@user_one, @user_two)
+    get root_url
+    assert_difference 'Friendship.count', -2 do
+      post remove_friend_path, one: @user_two.id, two: @user_one.id
+    end
+    assert_redirected_to root_url
+    assert_not @user_one.is_friend?(@user_two)
+    assert_not @user_two.is_friend?(@user_one)
   end
 
   test 'login, visit user, send request, deny request' do
-    get root_url
-    assert_template 'static_pages/home'
+    # get root_url
+    # assert_template 'static_pages/home'
     get login_url
     assert_template 'sessions/new'
     post login_url, session: {email: @user_one.email, password: 'password'}

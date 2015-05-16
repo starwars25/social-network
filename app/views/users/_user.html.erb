@@ -2,5 +2,12 @@
   <ul>
     <li><%= link_to user.username, user %></li>
     <li><%= user.email %></li>
+    <% if @current_user.is_friend?(user) %>
+        <%= form_for :friend, url: remove_friend_path do |f| %>
+            <%= hidden_field_tag :one, @current_user.id %>
+            <%= hidden_field_tag :two, user.id %>
+            <%= f.submit 'Remove friend' %>
+        <% end %>
+    <% end %>
   </ul>
 </div>

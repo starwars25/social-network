@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def unfriend(user)
-    raise 'Not a friend' unless is_friend?(user)
+    raise 'Not a friend' unless self.is_friend?(user)
     id = Friendship.where('from_id = (?) AND to_id = (?)', self.id, user.id)[0].id
     Friendship.find_by(id: id).destroy
     id = Friendship.where('from_id = (?) AND to_id = (?)', user.id, self.id)[0].id

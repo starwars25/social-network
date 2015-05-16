@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  before_action :is_logged_in?, only: [:profile]
+  before_action :is_logged_in?
 
   def home
     @users = User.all

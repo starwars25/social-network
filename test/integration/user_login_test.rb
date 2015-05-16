@@ -11,8 +11,8 @@ class UserLoginTest < ActionDispatch::IntegrationTest
   end
 
   test 'log in with remembering and than log out' do
-    get root_path
-    assert_template 'static_pages/home'
+    # get root_path
+    # assert_template 'static_pages/home'
     get login_path
     assert_template 'sessions/new'
     post login_path, session: {email: @user.email, password: 'admin', remember_me: '1'}

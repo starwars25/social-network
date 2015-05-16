@@ -20,6 +20,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def unfriend
+    User.find_by(id: params[:one]).unfriend(User.find_by(id: params[:two]))
+    flash[:success] = 'Friend removed'
+    redirect_to root_url
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation)
