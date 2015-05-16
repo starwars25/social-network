@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :edit, :create, :update]
+  resources :friend_requests, only: [:create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
