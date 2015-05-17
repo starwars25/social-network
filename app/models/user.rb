@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
     friends.include? user
   end
 
+  def is_member_of(dialog)
+    dialogs.include?(dialog)
+  end
+
 
   private
   def downcase
