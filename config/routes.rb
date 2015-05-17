@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :edit, :create, :update]
   resources :friend_requests, only: [:create, :update]
   resources :posts, only: [:create, :destroy]
+  resources :dialogs, only: [:show, :create, :update, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -90,6 +90,7 @@ class User < ActiveRecord::Base
     dialogs.each do |dialog|
       return true if dialog.members.include?(user) && dialog.members.count == 2
     end
+    false
   end
   private
   def downcase

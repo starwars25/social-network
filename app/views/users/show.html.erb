@@ -1,5 +1,8 @@
 <h1><%= @user.username %></h1>
 <h2><%= @user.email %></h2>
+<% unless @current_user.has_dialog_with(@user) %>
+    <%= link_to 'Send message', dialogs_path(from: @current_user.id, to: @user.id), method: :post %>
+<% end %>
 <% if @current_user.is_friend? @user %>
     <p>This user is a friend of you.</p>
 <% else %>
@@ -27,13 +30,13 @@
 
 <%= subscribe_to "/wall/#{@user.id}" %>
 <script>
-  PrivatePub.subscribe('/wall/<%= @user.id %>', function(data, channel) {
-      $('#wall').prepend(formInput(data));
-  });
-  function formInput(data) {
-      var output = '<h3>From: '+ data.post.from + '</h3>';
-      output += '<p>' + data.post.content + '</p>';
-      output += '<hr>';
-      return output
-  }
+    PrivatePub.subscribe('/wall/<%= @user.id %>', function (data, channel) {
+        $('#wall').prepend(formInput(data));
+    });
+    function formInput(data) {
+        var output = '<h3>From: ' + data.post.from + '</h3>';
+        output += '<p>' + data.post.content + '</p>';
+        output += '<hr>';
+        return output
+    }
 </script>

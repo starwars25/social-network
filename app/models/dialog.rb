@@ -9,6 +9,12 @@ class Dialog < ActiveRecord::Base
     DialogRelationship.create(user_id: user.id, dialog_id: id)
   end
 
+  def add_members(users)
+    users.each do |user|
+      add_member(user)
+    end
+  end
+
   def has_member?(user)
     members.include?(user)
   end

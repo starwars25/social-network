@@ -15,9 +15,7 @@ class DialogTest < ActiveSupport::TestCase
     assert_difference 'Dialog.count', 1 do
       @dialog = Dialog.create(name: 'Test dialog')
     end
-    @dialog.add_member(@admin)
-    @dialog.add_member(@user_one)
-    @dialog.add_member(@user_two)
+    @dialog.add_members([@admin, @user_one, @user_two])
     assert @dialog.members.count == 3
     assert @dialog.has_member?(@admin)
     assert @dialog.has_member?(@user_one)
@@ -39,10 +37,10 @@ class DialogTest < ActiveSupport::TestCase
     assert_difference 'Dialog.count', 1 do
       @dialog = Dialog.create(name: 'Test dialog')
     end
-    @dialog.add_member(@admin)
-    @dialog.add_member(@user_one)
+    @dialog.add_members([@admin, @user_one])
     assert @dialog.members.count == 2
     assert @admin.has_dialog_with(@user_one)
     assert @user_one.has_dialog_with(@admin)
+    assert_not @admin.has_dialog_with(@user_two)
   end
 end
