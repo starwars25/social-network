@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :friendship_relations, class_name: 'Friendship', foreign_key: 'to_id', dependent: :destroy
   has_many :friends, through: 'friendship_relations', source: :from_friend
   has_many :friend_requests, foreign_key: 'to_id'
+  has_many :active_posts, class_name: 'Post', foreign_key: 'from_id'
+  has_many :passive_posts, class_name: 'Post', foreign_key: 'to_id'
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
