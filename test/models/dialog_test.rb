@@ -34,4 +34,15 @@ class DialogTest < ActiveSupport::TestCase
     assert @user_two.is_member_of(@dialog)
     assert @dialog.members.count == 2
   end
+
+  test 'has dialog with' do
+    assert_difference 'Dialog.count', 1 do
+      @dialog = Dialog.create(name: 'Test dialog')
+    end
+    @dialog.add_member(@admin)
+    @dialog.add_member(@user_one)
+    assert @dialog.members.count == 2
+    assert @admin.has_dialog_with(@user_one)
+    assert @user_one.has_dialog_with(@admin)
+  end
 end

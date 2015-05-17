@@ -86,7 +86,11 @@ class User < ActiveRecord::Base
     dialogs.include?(dialog)
   end
 
-
+  def has_dialog_with(user)
+    dialogs.each do |dialog|
+      return true if dialog.members.include?(user) && dialog.members.count == 2
+    end
+  end
   private
   def downcase
     self.username = username.downcase
