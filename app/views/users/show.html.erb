@@ -16,3 +16,11 @@
 <h1>The Wall</h1>
 <h6>We don't need no education...</h6>
 <%= render @user.feed %>
+<h1>Post</h1>
+<%= form_for Post.new do |f| %>
+    <%= hidden_field :user, :id %>
+    <%= hidden_field :current_user, :id %>
+    <%= f.label 'Content' %>
+    <%= f.text_area :content %>
+    <%= f.submit 'Post' %>
+<% end %>
