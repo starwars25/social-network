@@ -15,12 +15,25 @@
 <% end %>
 <h1>The Wall</h1>
 <h6>We don't need no education...</h6>
-<%= render @user.feed %>
+<div id="wall"><%= render @user.feed %></div>
 <h1>Post</h1>
-<%= form_for Post.new do |f| %>
+<%= form_for Post.new, remote: true do |f| %>
     <%= hidden_field :user, :id %>
     <%= hidden_field :current_user, :id %>
     <%= f.label 'Content' %>
     <%= f.text_area :content %>
     <%= f.submit 'Post' %>
 <% end %>
+
+<%= subscribe_to "/wall/#{@user.id}" %>
+<script>
+  PrivatePub.subscribe('/wall/<%= @user.id %>', function(data, channel) {
+      $('#wall').prepend(formInput(data));
+  });
+  function formInput(data) {
+      var output = '<h3>From: '+ data.post.from + '</h3>';
+      output += '<p>' + data.post.content + '</p>';
+      output += '<hr>';
+      return output
+  }
+</script>

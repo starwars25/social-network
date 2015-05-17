@@ -11,15 +11,16 @@
 #document.getElementById("hint").innerHTML = "";
 #}
 #}
-load = () ->
-  user_input = document.getElementById('user_username')
-  user_input.onkeyup = () ->
-    if user_input.value.length < 4 or user_input.value.length > 20
-      document.getElementById("hint").innerHTML = "ТЫ БЛЯТЬ ЮЗЕР КРИВОРУКИЙ СУКА"
-    else
-      document.getElementById("hint").innerHTML = ""
+#load = () ->
+#  user_input = document.getElementById('user_username')
+#  user_input.onkeyup = () ->
+#    if user_input.value.length < 4 or user_input.value.length > 20
+#      document.getElementById("hint").innerHTML = "ТЫ БЛЯТЬ ЮЗЕР КРИВОРУКИЙ СУКА"
+#    else
+#      document.getElementById("hint").innerHTML = ""
+#
+#
+#window.onload = load
 
-
-window.onload = load
 
 

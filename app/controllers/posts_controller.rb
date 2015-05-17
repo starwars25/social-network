@@ -4,9 +4,10 @@ class PostsController < ApplicationController
 
   def create
     user = User.find_by(id: params[:user][:id])
-    post = Post.new(from_id: params[:current_user][:id], to_id: params[:user][:id], content: params[:post][:content])
-    if post.save
+    @post = Post.new(from_id: params[:current_user][:id], to_id: params[:user][:id], content: params[:post][:content])
+    if @post.save
       flash.now[:success] = 'Post successfully created.'
+      PrivatePub.publish_to("/wall/#{user.id}", post: {content: @post.content, from: @post.from.username})
     else
       flash.now[:danger] = 'An error occurred.'
     end
