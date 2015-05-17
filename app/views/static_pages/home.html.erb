@@ -10,4 +10,7 @@
 <% if logged_in? %>
     <%= render 'static_pages/friends' %>
 <% end %>
+<h1>The Wall</h1>
+<%= render @current_user.feed %>
+<hr>
 <%= render @users %>

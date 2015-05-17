@@ -24,3 +24,8 @@ end
 (3..5).each do |i|
   FriendRequest.create!(from_id: i, to_id: 1)
 end
+
+10.times do
+  Post.create!(from_id: 1, to_id: 2, content: Faker::Lorem.sentence(5))
+end
+

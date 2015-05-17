@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     user_one.is_friend?(user_two) && user_two.is_friend?(user_one)
   end
 
+  def feed
+    self.passive_posts.order(created_at: :desc)
+  end
+
   def remember
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
