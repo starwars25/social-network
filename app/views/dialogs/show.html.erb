@@ -1,12 +1,27 @@
 <h1><%= @dialog.name %></h1>
-<div id="chat">
-  <table>
-    <%= render @dialog.messages %>
-  </table>
-</div>
-<%= form_for Message.new do |f| %>
+<table id="chat">
+  <%= render @dialog.messages %>
+</table>
+
+<%= subscribe_to "/dialogs/#{@dialog.id}" %>
+
+<%= form_for Message.new, remote: true do |f| %>
     <%= f.hidden_field :user_id, value: @current_user.id %>
     <%= f.hidden_field :dialog_id, value: @dialog.id %>
     <%= f.text_area :content %>
     <%= f.submit 'Submit' %>
 <% end %>
+
+<script>
+    PrivatePub.subscribe('/dialogs/<%= @dialog.id %>', function (data, channel) {
+        $('#chat').append(formInput(data));
+    });
+    function formInput(data) {
+//        var output = '<h3>From: ' + data.post.from + '</h3>';
+//        output += '<p>' + data.post.content + '</p>';
+//        output += '<hr>';
+//        return output
+        var output = '<tr><td>' + data.message.from + '</td><td>' + data.message.content + '</td></tr>'
+        return output
+    }
+</script>

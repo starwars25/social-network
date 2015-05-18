@@ -3,11 +3,9 @@ class MessagesController < ApplicationController
   before_action :is_logged_in?
 
   def create
-    message = Message.new(message_params)
-    if message.save
-      redirect_to dialog_path(params[:message][:dialog_id])
-    else
-      redirect_to root_url
+    @message = Message.new(message_params)
+    if @message.save
+      PrivatePub.publish_to("/dialogs/#{params[:message][:dialog_id]}", message: {content: @message.content, from: @message.user.username})
     end
 
   end
