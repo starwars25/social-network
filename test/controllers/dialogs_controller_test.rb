@@ -9,6 +9,7 @@ class DialogsControllerTest < ActionController::TestCase
     @admin = users(:admin)
     @user_one = users(:user_one)
     @user_two = users(:user_two)
+    @dialog = dialogs(:one)
   end
 
   test 'should create dialog' do
@@ -26,6 +27,12 @@ class DialogsControllerTest < ActionController::TestCase
     assert_redirected_to Dialog.last
     # get :show, id: Dialog.last.id
     # assert_response :success
+  end
+
+  test 'should not be able to visit other dialogs' do
+    session[:user_id] = @user_two.id
+    get :show, id: @dialog.id
+    assert_redirected_to root_url
   end
 
 

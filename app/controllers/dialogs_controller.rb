@@ -1,6 +1,6 @@
 class DialogsController < ApplicationController
   before_action :is_logged_in?
-
+  before_action :valid_user?, only: [:show]
 
   def new
 
@@ -53,5 +53,10 @@ class DialogsController < ApplicationController
 
   def user
     @user = User.find_by(id: params[:id])
+  end
+
+  private
+  def valid_user?
+    redirect_to root_url unless Dialog.find_by(id: params[:id]).members.include?(current_user)
   end
 end
