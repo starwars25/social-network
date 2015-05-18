@@ -14,12 +14,18 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   post 'remove_friend' => 'users#unfriend'
-  resources :users
+  resources :users do
+    member do
+      get 'dialogs' => 'dialogs#user'
+    end
+
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :edit, :create, :update]
   resources :friend_requests, only: [:create, :update]
   resources :posts, only: [:create, :destroy]
   resources :dialogs, only: [:show, :create, :update, :destroy]
+  resources :messages, only: [:create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

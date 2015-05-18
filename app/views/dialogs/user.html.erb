@@ -1,0 +1,6 @@
+<h1>Your dialogs</h1>
+<% if @user.dialogs.any? %>
+    <%= render @user.dialogs %>
+<% else %>
+    <h1>You have no dialogs</h1>
+<% end %>

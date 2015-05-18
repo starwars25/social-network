@@ -1,0 +1,12 @@
+<h1><%= @dialog.name %></h1>
+<div id="chat">
+  <table>
+    <%= render @dialog.messages %>
+  </table>
+</div>
+<%= form_for Message.new do |f| %>
+    <%= f.hidden_field :user_id, value: @current_user.id %>
+    <%= f.hidden_field :dialog_id, value: @dialog.id %>
+    <%= f.text_area :content %>
+    <%= f.submit 'Submit' %>
+<% end %>

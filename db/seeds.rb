@@ -29,3 +29,8 @@ end
   Post.create!(from_id: 1, to_id: 2, content: Faker::Lorem.sentence(5))
 end
 
+dialog = Dialog.create(name: 'Test')
+dialog.add_members([User.all[0], User.all[1]])
+10.times do
+  Message.create(dialog_id: dialog.id, user_id: User.all[0].id, content: Faker::Lorem.sentence(5))
+end
