@@ -2,6 +2,8 @@ class DialogsController < ApplicationController
   before_action :is_logged_in?
   before_action :valid_user?, only: [:show]
   before_action :belongs_to_dialog?, only: [:quit]
+  before_action :enough_members?, only: [:quit]
+  before_action :user_is_normal?, only: [:quit]
 
   def new
 
@@ -64,6 +66,13 @@ class DialogsController < ApplicationController
   end
 
   private
+  def user_is_normal?
+    unless current_user.id.to_s == params[:user_id]
+      flash.now[:danger] = 'We think that you are a hacker'
+      redirect_to root_url
+    end
+  end
+
   def valid_user?
     redirect_to root_url unless Dialog.find_by(id: params[:id]).members.include?(current_user)
   end
@@ -71,6 +80,13 @@ class DialogsController < ApplicationController
   def belongs_to_dialog?
     unless Dialog.find_by(id: params[:dialog_id]).members.include? User.find_by(id: params[:user_id])
       flash.now[:danger] = 'You are not a member of this dialog'
+      redirect_to root_url
+    end
+  end
+
+  def enough_members?
+    unless Dialog.find_by(id: params[:dialog_id]).members.count > 2
+      flash.now[:danger] = 'You cannot quit dialog with only two members'
       redirect_to root_url
     end
   end
