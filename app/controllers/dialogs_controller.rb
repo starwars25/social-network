@@ -1,6 +1,11 @@
 class DialogsController < ApplicationController
   before_action :is_logged_in?
 
+
+  def new
+
+  end
+
   def create
     if params[:multi] == 'true'
       dialog = Dialog.create(name: params[:dialog][:name])
