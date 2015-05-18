@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
-  before_action :is_logged_in?, only: [:show]
+  before_action :is_logged_in?, except: [:new, :create]
   def new
     @user = User.new
+  end
+
+  def index
+    @users = User.all
   end
 
   def show

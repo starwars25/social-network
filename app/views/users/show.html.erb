@@ -16,6 +16,12 @@
         <% end %>
     <% end %>
 <% end %>
+<% if @user.friends.any? %>
+    <h1>Friends</h1>
+    <%= render @user.friends %>
+<% else %>
+    <h1>This user has no friends.</h1>
+<% end %>
 <h1>The Wall</h1>
 <h6>We don't need no education...</h6>
 <div id="wall"><%= render @user.feed %></div>

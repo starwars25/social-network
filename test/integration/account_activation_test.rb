@@ -6,6 +6,7 @@ class AccountActivationTest < ActionDispatch::IntegrationTest
   # end
   def setup
     ActionMailer::Base.deliveries.clear
+    @user = users(:admin)
   end
 
   test "should register and then activate" do

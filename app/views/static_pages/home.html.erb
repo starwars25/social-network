@@ -1,16 +1,25 @@
 <% provide(:title, 'Home') %>
-<h1>Landing page</h1>
-<div id="info">
-  <% if logged_in? %>
-    <h1>You are logged in.</h1>
-  <% else %>
-    <h1>You are not logged in.</h1>
-  <% end %>
-</div>
-<% if logged_in? %>
-    <%= render 'static_pages/friends' %>
-<% end %>
+<h1>Welcome, <%= current_user.username %></h1>
 <h1>The Wall</h1>
-<%= render @current_user.feed %>
-<hr>
-<%= render @users %>
+<div id="wall"><%= render @current_user.feed %></div>
+<h1>Post</h1>
+<%= form_for Post.new, remote: true do |f| %>
+    <%= hidden_field :user, :id %>
+    <%= hidden_field :current_user, :id %>
+    <%= f.label 'Content' %>
+    <%= f.text_area :content %>
+    <%= f.submit 'Post' %>
+<% end %>
+
+<%= subscribe_to "/wall/#{@user.id}" %>
+<script>
+    PrivatePub.subscribe('/wall/<%= @user.id %>', function (data, channel) {
+        $('#wall').prepend(formInput(data));
+    });
+    function formInput(data) {
+        var output = '<h3>From: ' + data.post.from + '</h3>';
+        output += '<p>' + data.post.content + '</p>';
+        output += '<hr>';
+        return output
+    }
+</script>
