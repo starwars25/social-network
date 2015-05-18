@@ -7,3 +7,18 @@ one:
 two:
   user_id: 2
   dialog_id: 1
+
+
+three:
+  user_id: 1
+  dialog_id: 2
+
+
+four:
+  user_id: 2
+  dialog_id: 2
+
+
+five:
+  user_id: 3
+  dialog_id: 2

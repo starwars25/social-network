@@ -1,6 +1,7 @@
 class DialogsController < ApplicationController
   before_action :is_logged_in?
   before_action :valid_user?, only: [:show]
+  before_action :belongs_to_dialog?, only: [:quit]
 
   def new
 
@@ -55,8 +56,22 @@ class DialogsController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
+  def quit
+    dialog = Dialog.find_by(id: params[:dialog_id])
+    user = User.find_by(id: params[:user_id])
+    dialog.remove_member(user)
+    redirect_to root_url
+  end
+
   private
   def valid_user?
     redirect_to root_url unless Dialog.find_by(id: params[:id]).members.include?(current_user)
+  end
+
+  def belongs_to_dialog?
+    unless Dialog.find_by(id: params[:dialog_id]).members.include? User.find_by(id: params[:user_id])
+      flash.now[:danger] = 'You are not a member of this dialog'
+      redirect_to root_url
+    end
   end
 end

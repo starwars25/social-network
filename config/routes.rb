@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   post 'remove_friend' => 'users#unfriend'
+  post 'quit_dialog' => 'dialogs#quit'
   resources :users do
     member do
       get 'dialogs' => 'dialogs#user'

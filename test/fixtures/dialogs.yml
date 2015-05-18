@@ -4,3 +4,6 @@ one:
   id: 1
   name: Test
 
+two:
+  id: 2
+  name: Another Test

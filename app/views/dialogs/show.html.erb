@@ -1,4 +1,7 @@
 <h1><%= @dialog.name %></h1>
+<% unless @dialog.members.count < 3 %>
+    <%= link_to 'Quit dialog', quit_dialog_path(user_id: current_user.id, dialog_id: @dialog.id), method: :post %>
+<% end %>
 <table id="chat">
   <%= render @dialog.messages %>
 </table>
@@ -17,10 +20,6 @@
         $('#chat').append(formInput(data));
     });
     function formInput(data) {
-//        var output = '<h3>From: ' + data.post.from + '</h3>';
-//        output += '<p>' + data.post.content + '</p>';
-//        output += '<hr>';
-//        return output
         var output = '<tr><td>' + data.message.from + '</td><td>' + data.message.content + '</td></tr>'
         return output
     }
