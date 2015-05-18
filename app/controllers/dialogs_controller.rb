@@ -11,15 +11,6 @@ class DialogsController < ApplicationController
       dialog = Dialog.create(name: params[:dialog][:name])
       input = params[:dialog][:string].split
       users = []
-      input.each do |email|
-        user = User.find_by(email: email)
-        if user.nil?
-          dialog.destroy
-          flash.now[:danger] = 'Wrong input'
-          redirect_to root_url
-        end
-        users << user
-      end
       creator = User.find_by(id: params[:dialog][:creator_id])
       if creator.nil?
         dialog.destroy
@@ -27,6 +18,18 @@ class DialogsController < ApplicationController
         redirect_to root_url
       end
       users << creator
+
+      input.each do |email|
+        user = User.find_by(email: email)
+        if user.nil? || user == creator
+          dialog.destroy
+          flash.now[:danger] = 'Wrong input'
+          redirect_to root_url
+          return
+        end
+        users << user
+      end
+
       dialog.add_members users
       redirect_to dialog
     else

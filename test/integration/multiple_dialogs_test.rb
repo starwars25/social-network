@@ -27,4 +27,19 @@ class MultipleDialogsTest < ActionDispatch::IntegrationTest
     assert @user_one.dialogs.include? dialog
     assert @user_two.dialogs.include? dialog
   end
+
+  test 'create multidialog with error' do
+    log_in_intergration @admin, 'admin'
+    assert is_logged_in?
+    assert_no_difference 'Dialog.count' do
+      post dialogs_path, multi: true, dialog: { string: "invalid #{@user_one.email}", creator_id: @admin.id, name: 'Test' }
+    end
+    assert_redirected_to root_url
+    assert flash[:danger] == 'Wrong input'
+    assert_no_difference 'Dialog.count' do
+      post dialogs_path, multi: true, dialog: { string: "#{@admin.email} #{@user_one.email}", creator_id: @admin.id, name: 'Test' }
+    end
+    assert_redirected_to root_url
+    assert flash[:danger] == 'Wrong input'
+  end
 end
