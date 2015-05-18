@@ -15,9 +15,10 @@ class MultipleDialogsTest < ActionDispatch::IntegrationTest
     log_in_intergration @admin, 'admin'
     assert is_logged_in?
     assert_difference 'Dialog.count', 1 do
-      post dialogs_path, multi: true, dialog: { string: "#{@user_one.email} #{@user_two.email}", creator_id: @admin.id }
+      post dialogs_path, multi: true, dialog: { string: "#{@user_one.email} #{@user_two.email}", creator_id: @admin.id, name: 'Test' }
     end
     dialog = Dialog.last
+    assert dialog.name == 'Test'
     assert dialog.members.count == 3
     assert dialog.members.include? @admin
     assert dialog.members.include? @user_one

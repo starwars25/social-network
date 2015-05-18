@@ -16,13 +16,14 @@ class DialogsControllerTest < ActionController::TestCase
     # assert_response :success
     # log_in_intergration(@admin)
     # assert is_logged_in?
+    session[:user_id] = @admin.id
     assert_difference 'Dialog.count', 1 do
       assert_difference 'DialogRelationship.count', 2 do
         post :create, from: @admin.id, to: @user_one.id
       end
     end
     assert flash[:success] == 'Dialog successfully created!'
-    assert_redirected_to root_url
+    assert_redirected_to Dialog.last
     # get :show, id: Dialog.last.id
     # assert_response :success
   end
