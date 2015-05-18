@@ -18,7 +18,7 @@ class SendMessageTest < ActionDispatch::IntegrationTest
     get dialog_path(@dialog.id)
     assert_template('dialogs/show')
     assert_difference 'Message.count', 1 do
-      post messages_path, message: { user_id: @admin.id, dialog_id: @dialog.id, content: 'Lorem ipsum' }
+      xhr :post, messages_path, message: { user_id: @admin.id, dialog_id: @dialog.id, content: 'Lorem ipsum' }
     end
     assert @dialog.messages.count == 1
     delete logout_path

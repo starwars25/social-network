@@ -7,7 +7,9 @@ class MessagesController < ApplicationController
     if @message.save
       PrivatePub.publish_to("/dialogs/#{params[:message][:dialog_id]}", message: {content: @message.content, from: @message.user.username})
     end
-
+    respond_to do |format|
+      format.js
+    end
   end
 
   private
