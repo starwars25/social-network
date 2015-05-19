@@ -29,12 +29,13 @@ class User < ActiveRecord::Base
     user_one.is_friend?(user_two) && user_two.is_friend?(user_one)
   end
 
-  def feed
+  def wall
     self.passive_posts.order(created_at: :desc)
   end
 
-  def my_feed
-    self
+  def feed
+    friend_ids = 'SELECT from_id FROM friendships WHERE to_id = :user_id'
+    Post.where("to_id IN (#{friend_ids}) OR to_id = :user_id", user_id: id).order(created_at: :desc)
   end
 
   def remember

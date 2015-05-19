@@ -68,3 +68,6 @@ users = []
 (2..21).each { |i| users << User.find_by(id: i) }
 
 users.each { |u| Post.create(from_id: u.id, to_id: u.id, content: Faker::Lorem.sentence(5)) }
+
+users = User.find_by(id: 1).friends
+users.each { |u| Post.create(from_id: u.id, to_id: u.id, content: 'This must be in feed.') }

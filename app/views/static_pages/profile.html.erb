@@ -9,7 +9,7 @@
     <%= render current_user.friends %>
 <% end %>
 <h1>The wall</h1>
-<div id="wall"><%= render current_user.feed %></div>
+<div id="wall"><%= render current_user.wall %></div>
 
   <h1>Post</h1>
   <%= form_for Post.new, remote: true do |f| %>

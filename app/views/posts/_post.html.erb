@@ -1,6 +1,6 @@
 <h3>From: <%= post.from.username %></h3>
 <p><%= post.content %></p>
-<% if post.from_id == @current_user.id %>
+<% if post.from_id == @current_user.id || post.to_id == current_user.id %>
     <%= link_to 'Delete', post_path(post, user: @current_user.id), method: :delete %>
 <% end %>
 <hr>
