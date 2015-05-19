@@ -2,9 +2,9 @@
 <%= form_for :dialog, url: dialogs_path do |f| %>
     <%= hidden_field_tag(:multi, true) %>
     <span>Enter list of user's emails you want to chat with in the dialog you are going to create.</span>
-    <%= f.text_field :string %>
+    <%= f.text_field :string, class: 'form-control' %>
     <%= f.label 'Name' %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control' %>
     <%= f.hidden_field(:creator_id, value: current_user.id) %>
-    <%= f.submit 'Submit' %>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
 <% end %>

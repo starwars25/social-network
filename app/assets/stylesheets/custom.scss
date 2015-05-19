@@ -1,0 +1,37 @@
+$color-primary-0: #AA9B39;	/* Main Primary color */
+$color-primary-1: #FFF4AA;
+$color-primary-2: #D4C76A;
+$color-primary-3: #807215;
+$color-primary-4: #554A00;
+$font-size-base: 16px;
+$body-bg: $color-primary-0;
+$text-color: $color-primary-1;
+$navbar-default-bg: $color-primary-4;
+$navbar-default-link-color: $color-primary-1;
+$navbar-default-link-hover-color: $color-primary-2;
+$link-color: $color-primary-1;
+$link-hover-color: $color-primary-2;
+$input-bg: $color-primary-2;
+$table-border-color: $color-primary-0;
+
+@import "bootstrap";
+
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-color: $text-color;
+  background-color: $text-color;
+}
+
+p {
+  margin-bottom: 7px;
+}
+
+tr > td {
+  border-top: none;
+}
+
+.dialog {
+  margin-bottom: 10px;
+}

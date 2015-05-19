@@ -12,7 +12,7 @@
         <%= form_for FriendRequest.new do |f| %>
             <%= hidden_field_tag :from_id, @current_user.id %>
             <%= hidden_field_tag :to_id, @user.id %>
-            <%= f.submit 'Add friend' %>
+            <%= f.submit 'Add friend', class: 'btn btn-primary' %>
         <% end %>
     <% end %>
 <% end %>
@@ -30,19 +30,20 @@
     <%= hidden_field :user, :id %>
     <%= hidden_field :current_user, :id %>
     <%= f.label 'Content' %>
-    <%= f.text_area :content %>
-    <%= f.submit 'Post' %>
+    <%= f.text_area :content, class: 'form-control' %>
+    <br>
+    <%= f.submit 'Post', class: 'btn btn-primary' %>
 <% end %>
 
 <%= subscribe_to "/wall/#{@user.id}" %>
 <script>
     PrivatePub.subscribe('/wall/<%= @user.id %>', function (data, channel) {
-        $('#wall').prepend(formInput(data));
+        $('#wall').prepend(form_input(data));
     });
-    function formInput(data) {
-        var output = '<h3>From: ' + data.post.from + '</h3>';
-        output += '<p>' + data.post.content + '</p>';
-        output += '<hr>';
-        return output
-    }
+    var form_input;
+
+    form_input = function(data) {
+        var ouput;
+        return ouput = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><hr></div>";
+    };
 </script>

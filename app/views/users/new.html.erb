@@ -2,12 +2,13 @@
 <%= form_for @user do |f| %>
     <%= f.label 'Username' %>
     <span id="hint"></span>
-    <%= f.text_field :username %>
+    <%= f.text_field :username, class: 'form-control'  %>
     <%= f.label 'Email' %>
-    <%= f.email_field :email %>
+    <%= f.email_field :email, class: 'form-control' %>
     <%= f.label 'Password' %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, class: 'form-control' %>
     <%= f.label 'Password confirmation' %>
-    <%= f.password_field :password_confirmation %>
-    <%= f.submit 'Submit' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <br>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
 <% end %>
