@@ -7,9 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'layouts/flash' %>
+
 <%= render 'layouts/header' %>
-<%= yield %>
+
+<div class="container"><%= render 'layouts/flash' %><%= yield %></div>
 
 </body>
 </html>

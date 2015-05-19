@@ -2,13 +2,15 @@
 <h1>Log in</h1>
 <%= form_for :session, url: login_path do |f| %>
     <%= f.label 'Email' %>
-    <%= f.email_field :email %>
+    <%= f.email_field :email, class: 'form-control' %>
     <%= f.label 'Password' %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, class: 'form-control' %>
     <%= link_to "(forgot password)", new_password_reset_path %>
+    <br>
     <%= f.label 'Remember me' do %>
         <%= f.check_box :remember_me %>
         <span>Remember me on this computer</span>
     <% end %>
-    <%= f.submit 'Submit' %>
+    <br>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
 <% end %>
