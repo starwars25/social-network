@@ -1,27 +1,32 @@
 <% provide(:title, 'Home') %>
-<h1>Welcome, <%= current_user.username %></h1>
-<h1>The Wall</h1>
-<div id="wall"><%= render @current_user.feed %></div>
-<h1>Post</h1>
-<%= form_for Post.new, remote: true do |f| %>
-    <%= hidden_field :user, :id %>
-    <%= hidden_field :current_user, :id %>
-    <%= f.label 'Content' %>
-    <%= f.text_area :content, class: 'form-control' %>
-    <br>
-    <%= f.submit 'Post', class: 'btn btn-primary' %>
-    <br>
-<% end %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1>Welcome, <%= current_user.username %></h1>
+
+    <h1>The Wall</h1>
+
+    <div id="wall"><%= render @current_user.feed %></div>
+    <h1>Post</h1>
+    <%= form_for Post.new, remote: true do |f| %>
+        <%= hidden_field :user, :id %>
+        <%= hidden_field :current_user, :id %>
+        <%= f.label 'Content' %>
+        <%= f.text_area :content, class: 'form-control' %>
+        <br>
+        <%= f.submit 'Post', class: 'btn btn-primary' %>
+        <br>
+    <% end %>
+  </div>
+</div>
 
 <%= subscribe_to "/wall/#{@user.id}" %>
 <script>
     PrivatePub.subscribe('/wall/<%= @user.id %>', function (data, channel) {
-        $('#wall').prepend(formInput(data));
+        $('#wall').prepend(form_input(data));
     });
-    function formInput(data) {
-        var output = '<h3>From: ' + data.post.from + '</h3>';
-        output += '<p>' + data.post.content + '</p>';
-        output += '<hr>';
-        return output
-    }
+    var form_input;
+
+    form_input = function(data) {
+        var ouput;
+        return ouput = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><hr></div>";
+    };
 </script>

@@ -11,8 +11,9 @@
 <%= form_for Message.new, remote: true do |f| %>
     <%= f.hidden_field :user_id, value: @current_user.id %>
     <%= f.hidden_field :dialog_id, value: @dialog.id %>
-    <%= f.text_area :content %>
-    <%= f.submit 'Submit' %>
+    <%= f.text_area :content, class: 'form-control' %>
+    <br>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
 <% end %>
 
 <script>
@@ -20,7 +21,7 @@
         $('#chat').append(formInput(data));
     });
     function formInput(data) {
-        var output = '<tr><td>' + data.message.from + '</td><td>' + data.message.content + '</td></tr>'
+        var output = '<tr><td>' + data.message.from + '</td><td>' + data.message.content + '</td></tr>';
         return output
     }
 </script>

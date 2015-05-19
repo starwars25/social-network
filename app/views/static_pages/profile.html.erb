@@ -11,24 +11,25 @@
 <h1>The wall</h1>
 <div id="wall"><%= render current_user.wall %></div>
 
-  <h1>Post</h1>
-  <%= form_for Post.new, remote: true do |f| %>
-      <%= hidden_field :user, :id %>
-      <%= hidden_field :current_user, :id %>
-      <%= f.label 'Content' %>
-      <%= f.text_area :content %>
-      <%= f.submit 'Post' %>
-  <% end %>
+<h1>Post</h1>
+<%= form_for Post.new, remote: true do |f| %>
+    <%= hidden_field :user, :id %>
+    <%= hidden_field :current_user, :id %>
+    <%= f.label 'Content' %>
+    <%= f.text_area :content, class: 'form-control' %>
+    <br>
+    <%= f.submit 'Post', class: 'btn btn-primary' %>
+<% end %>
 
-  <%= subscribe_to "/wall/#{@user.id}" %>
-  <script>
-      PrivatePub.subscribe('/wall/<%= @user.id %>', function (data, channel) {
-          $('#wall').prepend(formInput(data));
-      });
-      function formInput(data) {
-          var output = '<h3>From: ' + data.post.from + '</h3>';
-          output += '<p>' + data.post.content + '</p>';
-          output += '<hr>';
-          return output
-      }
-  </script>
+<%= subscribe_to "/wall/#{@user.id}" %>
+<script>
+    PrivatePub.subscribe('/wall/<%= @user.id %>', function (data, channel) {
+        $('#wall').prepend(formInput(data));
+    });
+    function formInput(data) {
+        var output = '<h3>From: ' + data.post.from + '</h3>';
+        output += '<p>' + data.post.content + '</p>';
+        output += '<hr>';
+        return output
+    }
+</script>
