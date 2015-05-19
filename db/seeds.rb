@@ -39,7 +39,8 @@ User.create!(username: 'admin', email: 'a.starwars.d@gmail.com', password: 'admi
 
 user = User.find_by(email: 'a.starwars.d@gmail.com')
 (2..6).each do |i|
-  friend = user.make_friends(User.find_by(i))
+  friend = User.find_by(id: i)
+  user.make_friends(friend)
   dialog = Dialog.create
   dialog.add_members([user, friend])
   dialog.update_attribute(:name, "#{user.username} #{friend.username}")
@@ -52,7 +53,7 @@ end
 (5..11).each { |i| FriendRequest.create(from_id: i, to_id: user.id) }
 
 users = []
-(1..6).each { |i| users << User.find_by(i) }
+(1..6).each { |i| users << User.find_by(id: i) }
 
 dialog = Dialog.create
 dialog.update_attribute(:name, 'Test')
@@ -64,6 +65,6 @@ user = User.first
 users.each { |friend| Post.create(from_id: friend.id, to_id: user.id, content: Faker::Lorem.sentence(5)) }
 
 users = []
-(2..21).each { |i| users << User.find_by(i) }
+(2..21).each { |i| users << User.find_by(id: i) }
 
 users.each { |u| Post.create(from_id: u.id, to_id: u.id, content: Faker::Lorem.sentence(5)) }

@@ -29,7 +29,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "username must not be too long" do
     assert_no_difference 'User.count' do
-      User.create(username: 'a'*21, email: 'foobar@foo.com', password: 'password', password_confirmation: 'password')
+      User.create(username: 'a'*41, email: 'foobar@foo.com', password: 'password', password_confirmation: 'password')
     end
   end
 
