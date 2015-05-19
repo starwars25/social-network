@@ -1,3 +1,4 @@
+<% provide(:title, "Profile") %>
 <h1>Name: <%= @current_user.username %></h1>
 <h2>Email: <%= @current_user.email %></h2>
 <% if @current_user.friend_requests.any? %>

@@ -1,3 +1,4 @@
+<% provide(:title, "#{@user.username}'s dialogs") %>
 <h1>Your dialogs</h1>
 <% if @user.dialogs.any? %>
     <%= render @user.dialogs %>
