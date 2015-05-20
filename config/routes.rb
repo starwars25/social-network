@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'password_resets/edit'
   get 'profile' => 'static_pages#profile'
+  post 'unlike' => 'likes#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   post 'remove_friend' => 'users#unfriend'
   post 'quit_dialog' => 'dialogs#quit'
+  delete 'unlike' => 'likes#destroy'
   resources :users do
     member do
       get 'dialogs' => 'dialogs#user'
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:create, :destroy]
   resources :dialogs, only: [:show, :create, :update, :destroy, :new]
   resources :messages, only: [:create]
+  resources :likes, only: [:create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
