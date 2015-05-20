@@ -38,4 +38,27 @@ module SessionsHelper
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end
+
+  # I know that it is odd here but I am to lazy to create a separate class for one method
+  def message
+    notifications = current_user.notifications
+    has_message = false
+    has_request = false
+    notifications.each do
+      if notifications.classification == 'message'
+        has_message = true
+      end
+      if notifications.classification == 'request'
+        has_request = true
+      end
+    end
+    if has_request && has_message
+      return ""
+    end
+    elsif has_request
+      return "You have some friend #{link_to 'Requests', profile_path}."
+    elsif has_message
+      return "You have some new messages #{}"
+    end
+  end
 end
