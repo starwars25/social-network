@@ -6,7 +6,7 @@ module SessionsHelper
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id)
-    elsif(user_id = cookies.signed[:user_id])
+    elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
       # Metaprogramming
       if user && user.authenticated?(:remember, cookies[:remember_token])
@@ -44,21 +44,21 @@ module SessionsHelper
     notifications = current_user.notifications
     has_message = false
     has_request = false
-    notifications.each do
-      if notifications.classification == 'message'
+    notifications.each do |notification|
+      if notification.classification == 'message'
         has_message = true
       end
-      if notifications.classification == 'request'
+      if notification.classification == 'request'
         has_request = true
       end
     end
     if has_request && has_message
-      return ""
-    end
+      return "You have some friend requests and new messages. #{link_to 'Requests', profile_path} #{link_to 'Dialogs', dialogs_user_path(current_user.id)}"
+
     elsif has_request
       return "You have some friend #{link_to 'Requests', profile_path}."
     elsif has_message
-      return "You have some new messages #{}"
+      return "You have some new messages #{link_to 'Dialogs', dialogs_user_path(current_user.id)}"
     end
   end
 end
