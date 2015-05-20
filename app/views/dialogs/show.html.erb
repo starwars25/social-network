@@ -8,14 +8,10 @@
 </table>
 
 <%= subscribe_to "/dialogs/#{@dialog.id}" %>
+<div id="message-form">
+  <%= render 'layouts/message_form' %>
+</div>
 
-<%= form_for Message.new, remote: true do |f| %>
-    <%= f.hidden_field :user_id, value: @current_user.id %>
-    <%= f.hidden_field :dialog_id, value: @dialog.id %>
-    <%= f.text_area :content, class: 'form-control' %>
-    <br>
-    <%= f.submit 'Submit', class: 'btn btn-primary' %>
-<% end %>
 
 <script>
     PrivatePub.subscribe('/dialogs/<%= @dialog.id %>', function (data, channel) {
@@ -25,4 +21,11 @@
         var output = '<tr><td>' + data.message.from + '</td><td>' + data.message.content + '</td></tr>';
         return output
     }
+    $('#message_content').keypress(function(e) {
+        if (e.which === 13) {
+            return $('#new_message').submit();
+        }
+    });
+
+
 </script>
