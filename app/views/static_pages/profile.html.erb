@@ -33,4 +33,9 @@
         output += '<hr>';
         return output
     }
+    $('#post_content').keypress(function (e) {
+        if (e.which === 13) {
+            return $('#new_post').submit();
+        }
+    });
 </script>

@@ -11,7 +11,9 @@ class PostsController < ApplicationController
     else
       flash.now[:danger] = 'An error occurred.'
     end
-    redirect_to user
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy

@@ -43,8 +43,13 @@
     });
     var form_input;
 
-    form_input = function(data) {
+    form_input = function (data) {
         var ouput;
         return ouput = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><hr></div>";
     };
+    $('#post_content').keypress(function (e) {
+        if (e.which === 13) {
+            return $('#new_post').submit();
+        }
+    });
 </script>
