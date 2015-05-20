@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :dialog_relations, foreign_key: 'user_id', class_name: 'DialogRelationship'
   has_many :dialogs, through: :dialog_relations, source: :dialog
   has_many :messages
+  has_many :notifications
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

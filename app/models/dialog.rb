@@ -2,6 +2,7 @@ class Dialog < ActiveRecord::Base
   has_many :dialog_relationships, foreign_key: 'dialog_id'
   has_many :members, through: :dialog_relationships, source: :user
   has_many :messages
+  has_many :notifications
 
 
   def add_member(user)

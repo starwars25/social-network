@@ -4,6 +4,7 @@ class DialogsController < ApplicationController
   before_action :belongs_to_dialog?, only: [:quit]
   before_action :enough_members?, only: [:quit]
   before_action :user_is_normal?, only: [:quit]
+  before_action :clear_notifications, only: [:show]
 
   def new
 
@@ -89,5 +90,12 @@ class DialogsController < ApplicationController
       flash.now[:danger] = 'You cannot quit dialog with only two members'
       redirect_to root_url
     end
+  end
+
+  def clear_notifications
+    Notification.where('user_id = (?) AND dialog_id = (?)', current_user.id, params[:id]).each do |n|
+      n.destroy
+    end
+
   end
 end
