@@ -22,5 +22,35 @@
 #
 #window.onload = load
 
+#max = (array) ->
+#  output = array[0]
+#  for element in array
+#    if element > ouput
+#      output = element
+#  return output
+#
+#
+#users = $('.user-tile')
+#users_witdhs = []
+#for user in users
+#  users.push user.height()
+#
+#
+#
+#
+#maximum = max(users_witdhs)
+#
+#for user in users
+#  user.height(maximum)
 
+max = () ->
+  output = 0
+  $('.user-tile').each ->
+    h = $(this).height()
+    if h > output
+      output = height
+  return output
 
+maximum = max()
+$('.user-tile').each ->
+  $(this).height(maximum)

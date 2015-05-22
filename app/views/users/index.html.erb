@@ -1,3 +1,33 @@
 <% provide(:title, "All Users") %>
-<h1>All users</h1>
-<%= render @users %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1>All users</h1></div>
+</div>
+<div class="row">
+  <% @users.each do |u| %>
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><%= render u %></div>
+  <% end %>
+</div>
+
+<script>
+    var max, maximum;
+
+    max = function () {
+        var output;
+        output = 0;
+        $('.user-tile').each(function () {
+            var h;
+            h = $(this).height();
+            if (h > output) {
+                return output = h;
+            }
+        });
+        return output;
+    };
+
+    maximum = max();
+
+    $('.user-tile').each(function () {
+        return $(this).height(maximum);
+    });
+
+</script>
