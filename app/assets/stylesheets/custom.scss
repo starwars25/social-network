@@ -20,3 +20,16 @@ tr > td {
 .dialog {
   margin-bottom: 10px;
 }
+
+.dialog_header {
+  margin-top: 0;
+}
+
+#chat-scroll {
+  height: 500px;
+  overflow-y: scroll;
+}
+
+#message_content {
+  margin-top: 5px;
+}

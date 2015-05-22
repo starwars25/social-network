@@ -1,8 +1,20 @@
 <% provide(:title, "#{@user.username}'s dialogs") %>
-<h1>Your dialogs</h1>
-<% if @user.dialogs.any? %>
-    <%= render @user.dialogs %>
-<% else %>
-    <h1>You have no dialogs</h1>
-<% end %>
-<%= link_to 'Create dialog', new_dialog_path %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1>Your dialogs</h1></div>
+</div>
+<div class="row">
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <% if @user.dialogs.any? %>
+        <ul>
+          <% @user.dialogs.each do |dialog| %>
+              <li><%= link_to dialog.name, dialog_path(dialog.id), remote: true %></li>
+          <% end %>
+        </ul>
+    <% else %>
+        <h1>You have no dialogs</h1>
+    <% end %>
+    <%= link_to 'Create dialog', new_dialog_path %></div>
+  <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" id="dialog_field">
+
+  </div>
+</div>

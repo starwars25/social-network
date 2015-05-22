@@ -49,6 +49,9 @@ class DialogsController < ApplicationController
 
   def show
     @dialog = Dialog.find_by(id: params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy

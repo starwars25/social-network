@@ -1,2 +1,2 @@
-$('#message_content').val("");
+$('#dialog_field').html('<%= escape_javascript render @dialog %>');
 $('#chat-scroll').scrollTop(document.getElementById('chat-scroll').scrollHeight);

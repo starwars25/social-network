@@ -16,6 +16,10 @@ class Dialog < ActiveRecord::Base
     end
   end
 
+  def actual_messages
+    self.messages.all[10]
+  end
+
   def has_member?(user)
     members.include?(user)
   end
