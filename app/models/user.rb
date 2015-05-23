@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX, multiline: true}, uniqueness: {case_sensitive: false}
   has_secure_password
-  validates :password, length: {minimum: 4}
+  validates :password, length: {minimum: 4}, allow_blank: true
   has_many :friendship_relations, class_name: 'Friendship', foreign_key: 'to_id', dependent: :destroy
   has_many :friends, through: 'friendship_relations', source: :from_friend
   has_many :friend_requests, foreign_key: 'to_id'
