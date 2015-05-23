@@ -1,8 +1,8 @@
 <div id="user-<%= user.id %>" class="user-tile">
-  <a href="<%= user_path(user) %>"><%= user.username %>
-    <br>
-    <%= user.email %>
-    <%= image_tag user.avatar.url, class: 'img-responsive img-thumbnail' if user.avatar? %></a>
+  <%= link_to user.username, user %><br>
+  <%= user.username %>
+  <%= user.email %>
+  <%= image_tag user.avatar.url, class: 'img-responsive img-thumbnail' if user.avatar? %>
   <% if @current_user.is_friend?(user) %>
       <%= form_for :friend, url: remove_friend_path do |f| %>
           <%= hidden_field_tag :one, @current_user.id %>
