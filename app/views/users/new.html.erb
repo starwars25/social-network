@@ -9,6 +9,8 @@
     <%= f.password_field :password, class: 'form-control' %>
     <%= f.label 'Password confirmation' %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <%= f.label 'Avatar' %>
+    <%= f.file_field :avatar %>
     <br>
     <%= f.submit 'Submit', class: 'btn btn-primary' %>
 <% end %>

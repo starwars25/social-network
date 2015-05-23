@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523133722) do
+ActiveRecord::Schema.define(version: 20150523134901) do
 
   create_table "dialog_relationships", force: :cascade do |t|
     t.integer  "user_id"

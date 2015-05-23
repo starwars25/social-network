@@ -1,13 +1,15 @@
 <div id="user-<%= user.id %>" class="user-tile">
-  <ul class="list-unstyled"><li>
-  <%= link_to user.username, user %><br>
-  <%= user.email %>
-  <% if @current_user.is_friend?(user) %>
-      <%= form_for :friend, url: remove_friend_path do |f| %>
-          <%= hidden_field_tag :one, @current_user.id %>
-          <%= hidden_field_tag :two, user.id %>
-          <%= f.submit 'Remove friend', class: 'btn btn-danger' %>
-      <% end %>
-  <% end %></li>
+  <ul class="list-unstyled">
+    <li>
+      <%= link_to user.username, user %><br>
+      <%= user.email %>
+      <%= image_tag user.avatar.url if user.avatar? %>
+      <% if @current_user.is_friend?(user) %>
+          <%= form_for :friend, url: remove_friend_path do |f| %>
+              <%= hidden_field_tag :one, @current_user.id %>
+              <%= hidden_field_tag :two, user.id %>
+              <%= f.submit 'Remove friend', class: 'btn btn-danger' %>
+          <% end %>
+      <% end %></li>
   </ul>
 </div>
