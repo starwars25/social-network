@@ -16,9 +16,8 @@ class PostToTheWallTest < ActionDispatch::IntegrationTest
     get user_path(@user_two)
     assert @user_two.wall.count == 0
     assert_difference 'Post.count', 1 do
-      post posts_path, user: {id: @user_two.id}, current_user: {id: @user_one.id}, post: {content: 'Lorem ipsum'}
+      xhr :post, posts_path, user: {id: @user_two.id}, current_user: {id: @user_one.id}, post: {content: 'Lorem ipsum'}
     end
-    assert_redirected_to user_path(@user_two)
     assert @user_two.wall.count == 1
     assert_no_difference 'Post.count' do
       delete post_path(Post.last.id), user: @admin.id
@@ -29,7 +28,7 @@ class PostToTheWallTest < ActionDispatch::IntegrationTest
     end
 
     assert_difference 'Post.count', 1 do
-      post posts_path, user: {id: @user_two.id}, current_user: {id: @user_one.id}, post: {content: 'Lorem ipsum'}
+      xhr :post, posts_path, user: {id: @user_two.id}, current_user: {id: @user_one.id}, post: {content: 'Lorem ipsum'}
     end
 
     assert_difference 'Post.count', -1 do

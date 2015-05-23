@@ -23,7 +23,7 @@ class NotificationsTest < ActionDispatch::IntegrationTest
     delete logout_path
     log_in_intergration(@user_one)
     assert_difference '@user_one.notifications.count', -1 do
-      get dialog_path(@dialog.id)
+      xhr :get, dialog_path(@dialog.id)
     end
     assert @admin.notifications.count == 0
     assert @user_one.notifications.count == 0

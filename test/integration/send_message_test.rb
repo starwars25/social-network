@@ -15,7 +15,7 @@ class SendMessageTest < ActionDispatch::IntegrationTest
   test 'login and send' do
     log_in_intergration(@admin, 'admin')
     assert is_logged_in?
-    get dialog_path(@dialog.id)
+    xhr :get, dialog_path(@dialog.id)
     assert_template('dialogs/show')
     assert_difference 'Message.count', 1 do
       xhr :post, messages_path, message: { user_id: @admin.id, dialog_id: @dialog.id, content: 'Lorem ipsum' }
