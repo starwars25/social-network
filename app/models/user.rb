@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :dialogs, through: :dialog_relations, source: :dialog
   has_many :messages
   has_many :notifications
+  mount_uploader :avatar, AvatarUploader
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost

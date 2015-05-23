@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520151600) do
+ActiveRecord::Schema.define(version: 20150523133722) do
 
   create_table "dialog_relationships", force: :cascade do |t|
     t.integer  "user_id"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150520151600) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.string   "avatar"
   end
 
 end
