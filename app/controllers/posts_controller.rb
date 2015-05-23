@@ -4,16 +4,14 @@ class PostsController < ApplicationController
 
   def create
     user = User.find_by(id: params[:user][:id])
-    @post = Post.new(from_id: params[:current_user][:id], to_id: params[:user][:id], content: params[:post][:content])
+    @post = Post.new(from_id: params[:current_user][:id], to_id: params[:user][:id], content: params[:post][:content], image: params[:post][:image])
     if @post.save
       flash.now[:success] = 'Post successfully created.'
-      PrivatePub.publish_to("/wall/#{user.id}", post: {content: @post.content, from: @post.from.username})
+      PrivatePub.publish_to("/wall/#{user.id}", post: { content: @post.content, from: @post.from.username, image: @post.image.url })
     else
       flash.now[:danger] = 'An error occurred.'
     end
-    respond_to do |format|
-      format.js
-    end
+    redirect_to root_url
   end
 
   def destroy

@@ -33,15 +33,7 @@
     <h6>We don't need no education...</h6>
 
     <div id="wall"><%= render @user.wall %></div>
-    <h1>Post</h1>
-    <%= form_for Post.new, remote: true do |f| %>
-        <%= hidden_field :user, :id %>
-        <%= hidden_field :current_user, :id %>
-        <%= f.label 'Content' %>
-        <%= f.text_area :content, class: 'form-control' %>
-        <br>
-        <%= f.submit 'Post', class: 'btn btn-primary' %>
-    <% end %></div>
+    <%= render 'shared/post_form' %></div>
 </div>
 
 <%= subscribe_to "/wall/#{@user.id}" %>
@@ -51,9 +43,9 @@
     });
     var form_input;
 
-    form_input = function (data) {
-        var ouput;
-        return ouput = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><hr></div>";
+    form_input = function(data) {
+        var output;
+        return output = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><img src=\"" + data.post.image + "\" class=\"img-responsive img-thumbnail\" /><hr></div>";
     };
     $('#post_content').keypress(function (e) {
         if (e.which === 13) {

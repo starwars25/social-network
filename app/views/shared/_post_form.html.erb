@@ -1,0 +1,11 @@
+<h1>Post</h1>
+<%= form_for Post.new, html: {multipart: true} do |f| %>
+    <%= hidden_field :user, :id %>
+    <%= hidden_field :current_user, :id %>
+    <%= f.label 'Content' %>
+    <%= f.text_area :content, class: 'form-control' %>
+    <%= f.label 'Image' %>
+    <%= f.file_field :image %>
+    <br>
+    <%= f.submit 'Post', class: 'btn btn-primary' %>
+<% end %>

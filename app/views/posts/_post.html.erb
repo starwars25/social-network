@@ -1,6 +1,8 @@
 <div class="post" id="post-<%= post.id %>"><p><strong><%= post.from.username %></strong></p>
 
   <p><%= post.content %></p>
+  <%= image_tag post.image.url, class: 'img-responsive img-thumbnail' if post.image? %>
+  <br>
   <% if post.from_id == @current_user.id || post.to_id == current_user.id %>
       <%= link_to 'Delete', post_path(post, user: @current_user.id), method: :delete, class: 'btn btn-danger' %>
   <% end %>
