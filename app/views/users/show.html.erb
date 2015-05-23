@@ -3,6 +3,7 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1><%= @user.username %></h1>
 
     <h2><%= @user.email %></h2>
+    <%= image_tag @user.avatar.url, class: 'img-responsive img-thumbnail' if @user.avatar? %>
     <% unless @current_user.has_dialog_with(@user) %>
         <%= link_to 'Send message', dialogs_path(from: @current_user.id, to: @user.id), method: :post %>
     <% end %>

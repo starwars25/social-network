@@ -2,11 +2,11 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase
   before_create :create_activation_digest
-  validates :username, presence: true, length: {minimum: 4, maximum: 40}, uniqueness: {case_sensitive: false}
+  validates :username, presence: true, length: { minimum: 4, maximum: 40 }, uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX, multiline: true}, uniqueness: {case_sensitive: false}
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, multiline: true }, uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, length: {minimum: 4}, allow_blank: true
+  validates :password, length: { minimum: 4 }, allow_blank: true
   has_many :friendship_relations, class_name: 'Friendship', foreign_key: 'to_id', dependent: :destroy
   has_many :friends, through: 'friendship_relations', source: :from_friend
   has_many :friend_requests, foreign_key: 'to_id'
@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :notifications
   mount_uploader :avatar, AvatarUploader
+  validate :avatar_size
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
@@ -99,6 +100,7 @@ class User < ActiveRecord::Base
     end
     false
   end
+
   private
   def downcase
     self.username = username.downcase
@@ -110,5 +112,9 @@ class User < ActiveRecord::Base
     self.activation_digest = User.digest(activation_token)
   end
 
-
+  def avatar_size
+    if avatar.size > 5.megabytes
+      errors.add(:avatar, "should be less than 5MB")
+    end
+  end
 end
