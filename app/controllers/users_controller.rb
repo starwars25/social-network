@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :is_logged_in?, except: [:new, :create]
+  before_action :is_logged_in?, except: [:new, :create, :edit, :update]
   def new
     @user = User.new
   end
@@ -24,6 +24,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = 'Successfully updated profile'
+      redirect_to profile_path
+    else
+      flash.now[:danger] = 'Error'
+      render 'users/edit'
+    end
+  end
+
   def unfriend
     User.find_by(id: params[:one]).unfriend(User.find_by(id: params[:two]))
     flash[:success] = 'Friend removed'
@@ -34,6 +49,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar)
   end
+
 
 
 end

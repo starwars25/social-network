@@ -1,0 +1,9 @@
+<h1>Edit user</h1>
+<%= form_for(@user) do |f| %>
+    <%= f.label 'Username' %>
+    <%= f.text_field :username, class: 'form-control' %>
+    <%= f.label 'Avatar' %>
+    <%= f.file_field :avatar, class: 'form-control' %>
+    <br>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+<% end %>
