@@ -1,4 +1,4 @@
-<div id="user-<%= user.id %>" class="user-tile">
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><div id="user-<%= user.id %>" class="user-tile">
   <%= link_to user.username, user %><br>
   <%= user.username %>
   <%= user.email %>
@@ -10,4 +10,4 @@
           <%= f.submit 'Remove friend', class: 'btn btn-danger' %>
       <% end %>
   <% end %>
-</div>
+</div></div>
