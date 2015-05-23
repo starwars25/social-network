@@ -25,7 +25,12 @@
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
     <% if @user.friends.any? %>
         <h1>Friends</h1>
-        <%= render @user.friends %>
+        <% @user.friends.each do |friend| %>
+            <ul class="list-unstyled"><li><%= link_to friend.username, friend %></li>
+            <li><%= friend.email %></li>
+            <li><%= image_tag friend.avatar.url, class: 'img-responsive img-thumbnail' if friend.avatar? %></li></ul>
+
+        <% end %>
     <% else %>
         <h1>This user has no friends.</h1>
     <% end %></div>
@@ -43,7 +48,7 @@
     });
     var form_input;
 
-    form_input = function(data) {
+    form_input = function (data) {
         var output;
         return output = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><img src=\"" + data.post.image + "\" class=\"img-responsive img-thumbnail post_image\" /><hr></div>";
     };
