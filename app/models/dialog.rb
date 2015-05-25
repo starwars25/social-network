@@ -3,6 +3,7 @@ class Dialog < ActiveRecord::Base
   has_many :members, through: :dialog_relationships, source: :user
   has_many :messages
   has_many :notifications
+  default_scope -> { order(:last_message_send => :desc) }
 
 
   def add_member(user)

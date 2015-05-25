@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523171535) do
+ActiveRecord::Schema.define(version: 20150525101946) do
 
   create_table "dialog_relationships", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20150523171535) do
 
   create_table "dialogs", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.datetime "last_message_send"
   end
 
   create_table "friend_requests", force: :cascade do |t|
