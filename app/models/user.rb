@@ -101,6 +101,10 @@ class User < ActiveRecord::Base
     false
   end
 
+  def notification_exists?(dialog)
+    notifications.include?(Notification.find_by(dialog_id: dialog.id))
+  end
+
   private
   def downcase
     self.username = username.downcase

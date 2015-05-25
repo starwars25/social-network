@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
     dialog = Dialog.find_by(id: params[:message][:dialog_id])
     users = dialog.members
     users.each do |user|
-      next if user == User.find_by(id: params[:message][:user_id])
+      next if user == User.find_by(id: params[:message][:user_id]) || user.notification_exists?(dialog)
       Notification.create(classification: 'message', user_id: user.id, dialog_id: dialog.id)
     end
   end
