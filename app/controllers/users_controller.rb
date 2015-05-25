@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @feed = @user.wall.paginate(page: params[:page], per_page: 10)
   end
 
   def create

@@ -3,7 +3,8 @@
 
 <h1>The Wall</h1>
 
-<div id="wall"><%= render @current_user.feed %></div>
+<div id="wall"><%= render @feed %></div>
+<%= will_paginate @feed %>
 <%= render 'shared/post_form' %>
 
 
