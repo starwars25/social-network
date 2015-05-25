@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'password_resets/new'
-
+  get 'search' => 'searchs#home'
+  post 'search' => 'searchs#find'
   get 'password_resets/edit'
   get 'profile' => 'static_pages#profile'
   post 'unlike' => 'likes#destroy'

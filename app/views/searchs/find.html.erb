@@ -1,0 +1,6 @@
+<% if @user.nil? %>
+    <h1>Sorry, no user with such email: <%= params[:search][:email] %></h1>
+<% else %>
+    <h1>Results</h1>
+    <%= render @user %>
+<% end %>
