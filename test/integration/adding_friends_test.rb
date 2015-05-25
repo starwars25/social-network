@@ -42,7 +42,7 @@ class AddingFriendsTest < ActionDispatch::IntegrationTest
     assert_difference 'Friendship.count', 2 do
       patch friend_request_path(request.id), from_id: @user_one.id, to_id: @user_two.id, friend_request: {choice: 'accept'}
     end
-    assert_redirected_to root_url
+    assert_redirected_to profile_path
     assert @user_one.is_friend?(@user_two)
     assert @user_two.is_friend?(@user_one)
     assert_not FriendRequest.requested?(@user_one, @user_two)
@@ -86,7 +86,7 @@ class AddingFriendsTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Friendship.count' do
       patch friend_request_path(request.id), from_id: @user_one.id, to_id: @user_two.id, friend_request: {choice: 'deny'}
     end
-    assert_redirected_to root_url
+    assert_redirected_to profile_path
     assert_not @user_one.is_friend?(@user_two)
     assert_not @user_two.is_friend?(@user_one)
     assert_not FriendRequest.requested?(@user_one, @user_two)
