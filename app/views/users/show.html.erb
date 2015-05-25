@@ -4,6 +4,13 @@
 
     <h2><%= @user.email %></h2>
     <%= image_tag @user.avatar.url, class: 'img-responsive img-thumbnail' if @user.avatar? %>
+    <% if @current_user.is_friend?(@user) %>
+        <%= form_for :friend, url: remove_friend_path do |f| %>
+            <%= hidden_field_tag :one, @current_user.id %>
+            <%= hidden_field_tag :two, user.id %>
+            <%= f.submit 'Remove friend', class: 'btn btn-danger' %>
+        <% end %>
+    <% end %>
     <% unless @current_user.has_dialog_with(@user) %>
         <%= link_to 'Send message', dialogs_path(from: @current_user.id, to: @user.id), method: :post %>
     <% end %>

@@ -24,7 +24,7 @@ class DialogsControllerTest < ActionController::TestCase
       end
     end
     assert flash[:success] == 'Dialog successfully created!'
-    assert_redirected_to Dialog.last
+    assert_redirected_to Dialog.first
     # get :show, id: Dialog.last.id
     # assert_response :success
   end

@@ -38,7 +38,7 @@ class NotificationsTest < ActionDispatch::IntegrationTest
     log_in_intergration(@user_one)
     assert_difference '@user_one.notifications.count', -2 do
       xhr :get, dialog_path(@dialog.id)
-      patch friend_request_path(friend_request), to_id: @user_one.id, from_id: @admin.id, friend_request: {choice: 'accept'}
+      patch friend_request_path(friend_request), to_id: @user_one.id, from_id: @admin.id, friend_request: {choice: 'deny'}
     end
     assert @admin.notifications.count == 0
     assert @user_one.notifications.count == 0

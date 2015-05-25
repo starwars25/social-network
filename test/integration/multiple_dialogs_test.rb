@@ -17,7 +17,7 @@ class MultipleDialogsTest < ActionDispatch::IntegrationTest
     assert_difference 'Dialog.count', 1 do
       post dialogs_path, multi: true, dialog: { string: "#{@user_one.email} #{@user_two.email}", creator_id: @admin.id, name: 'Test' }
     end
-    dialog = Dialog.last
+    dialog = Dialog.first
     assert dialog.name == 'Test'
     assert dialog.members.count == 3
     assert dialog.members.include? @admin

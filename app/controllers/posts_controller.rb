@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     else
       flash.now[:danger] = 'An error occurred.'
     end
-    redirect_to root_url
+    redirect_to user
   end
 
   def destroy
