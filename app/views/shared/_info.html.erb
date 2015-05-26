@@ -1,25 +1,27 @@
 <h1>Info</h1>
+<table class="table">
 <% unless user.first_name.blank? %>
-    <p>First name: <%= user.first_name %></p>
+    <tr><td>First name</td> <td><%= user.first_name %></td></tr>
 <% end %>
 <% unless user.last_name.blank? %>
-    <p>Last name: <%= user.last_name %></p>
+    <tr><td>Last name</td> <td><%= user.last_name %></td></tr>
 <% end %>
 <% unless user.date_of_birth.blank? %>
-    <p>Date of birth: <%= user.date_of_birth %></p>
+    <tr><td>Date of birth</td> <td><%= user.date_of_birth %></td></tr>
 <% end %>
 <% unless user.city.blank? %>
-    <p>City: <%= user.city %></p>
+    <tr><td>City</td> <td><%= user.city %></td></tr>
 <% end %>
 <% unless user.country.blank? %>
-    <p>Country: <%= user.country %></p>
+    <tr><td>Country</td> <td><%= user.country %></td></tr>
 <% end %>
 <% unless user.school.blank? %>
-    <p>School: <%= user.school %></p>
+    <tr><td>School</td> <td><%= user.school %></td></tr>
 <% end %>
 <% unless user.university.blank? %>
-    <p>University: <%= user.university %></p>
+    <tr><td>University</td> <td><%= user.university %></td></tr>
 <% end %>
 <% unless user.occupation.blank? %>
-    <p>Occupation: <%= user.occupation %></p>
+    <tr><td>Occupation</td> <td><%= user.occupation %></td></tr>
 <% end %>
+</table>
