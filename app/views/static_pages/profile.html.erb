@@ -4,7 +4,6 @@
     <h1>Name: <%= full_name current_user %></h1>
     <%= link_to 'Edit profile', edit_user_path(current_user) %>
     <h2>Email: <%= @current_user.email %></h2>
-    <!--<%= render 'shared/info', user: current_user %>-->
     <%= image_tag current_user.avatar.url, class: 'img-responsive img-thumbnail' if current_user.avatar? %>
     <% if @current_user.friend_requests.any? %>
         <h1>Friend requests</h1>

@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
 
   def make_friends(user)
     raise 'Already friends' if User.friends?(self, user)
+    raise 'Cannot make friend of yourself' if self == user
     Friendship.create(from_id: self.id, to_id: user.id)
     Friendship.create(from_id: user.id, to_id: self.id)
   end
