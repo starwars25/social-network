@@ -1,6 +1,6 @@
 <% provide(:title, "#{@user.username}'s profile") %>
 <div class="row">
-  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><h1><%= render 'shared/full_name', user: @user %></h1>
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><h1><%= full_name @user %></h1>
 
     <h2><%= @user.email %></h2>
     <%= image_tag @user.avatar.url, class: 'img-responsive img-thumbnail' if @user.avatar? %>

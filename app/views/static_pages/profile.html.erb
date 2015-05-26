@@ -1,7 +1,7 @@
 <% provide(:title, "Profile") %>
 <div class="row">
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    <h1>Name: <%= render 'shared/full_name', user: current_user %></h1>
+    <h1>Name: <%= full_name current_user %></h1>
     <%= link_to 'Edit profile', edit_user_path(current_user) %>
     <h2>Email: <%= @current_user.email %></h2>
     <!--<%= render 'shared/info', user: current_user %>-->
