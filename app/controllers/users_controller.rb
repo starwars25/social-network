@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :is_logged_in?, except: [:new, :create, :edit, :update]
+
   def new
     @user = User.new
   end
@@ -48,9 +49,15 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :avatar, :first_name,
+                                 :last_name,
+                                 :date_of_birth,
+                                 :city,
+                                 :country,
+                                 :school,
+                                 :university,
+                                 :occupation)
   end
-
 
 
 end

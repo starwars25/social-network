@@ -1,0 +1,13 @@
+<% @user.friends.each do |friend| %>
+    <ul class="list-unstyled">
+      <% if !friend.first_name.nil? && !friend.last_name.nil? %>
+          <li><%= link_to full_name(friend), friend %></li>
+
+    <% else %>
+          <li><%= link_to friend.username, friend %></li>
+      <% end %>
+      <li><%= friend.email %></li>
+      <li><%= image_tag friend.avatar.url, class: 'img-responsive img-thumbnail' if friend.avatar? %></li>
+    </ul>
+
+<% end %>

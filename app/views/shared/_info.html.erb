@@ -1,0 +1,25 @@
+<h1>Info</h1>
+<% unless user.first_name.blank? %>
+    <p>First name: <%= user.first_name %></p>
+<% end %>
+<% unless user.last_name.blank? %>
+    <p>Last name: <%= user.last_name %></p>
+<% end %>
+<% unless user.date_of_birth.blank? %>
+    <p>Date of birth: <%= user.date_of_birth %></p>
+<% end %>
+<% unless user.city.blank? %>
+    <p>City: <%= user.city %></p>
+<% end %>
+<% unless user.country.blank? %>
+    <p>Country: <%= user.country %></p>
+<% end %>
+<% unless user.school.blank? %>
+    <p>School: <%= user.school %></p>
+<% end %>
+<% unless user.university.blank? %>
+    <p>University: <%= user.university %></p>
+<% end %>
+<% unless user.occupation.blank? %>
+    <p>Occupation: <%= user.occupation %></p>
+<% end %>

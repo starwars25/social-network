@@ -11,6 +11,24 @@
     <%= f.password_field :password_confirmation, class: 'form-control' %>
     <%= f.label 'Avatar' %>
     <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png' %>
+    <hr>
+    <h1>Questionnaire</h1>
+    <%= f.label 'First Name' %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+    <%= f.label 'Last Name' %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+    <%= f.label 'Date of Birth' %>
+    <%= f.date_field :date_of_birth, class: 'form-control' %>
+    <%= f.label 'City' %>
+    <%= f.text_field :city, class: 'form-control' %>
+    <%= f.label 'Country' %>
+    <%= f.text_field :country, class: 'form-control' %>
+    <%= f.label 'School' %>
+    <%= f.text_field :school, class: 'form-control' %>
+    <%= f.label 'University' %>
+    <%= f.text_field :university, class: 'form-control' %>
+    <%= f.label 'Occupation' %>
+    <%= f.text_field :occupation, class: 'form-control' %>
     <br>
     <%= f.submit 'Submit', class: 'btn btn-primary' %>
 <% end %>
