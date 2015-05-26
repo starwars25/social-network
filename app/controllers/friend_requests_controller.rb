@@ -2,7 +2,7 @@ class FriendRequestsController < ApplicationController
   after_action :send_notification, only: [:create]
   after_action :delete_notification, only: [:update]
   def create
-    FriendRequest.create(from_id: params[:from_id], to_id: params[:to_id])
+    FriendRequest.create(from_id: params[:from_id], to_id: params[:to_id]) unless User.find(params[:from_id]) == User.find(params[:to_id])
     redirect_to User.find_by(id: params[:to_id])
   end
 
