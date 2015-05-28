@@ -45,7 +45,9 @@ tr > td {
 
 .post {
 //  border-bottom: 1px solid;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  border-bottom: 1px solid #ddd;
+
 }
 
 .delete {
@@ -54,4 +56,13 @@ tr > td {
 
 .btn {
   margin-bottom: 10px;
+
+}
+
+.table-info {
+  margin-top: 22px;
+}
+
+.main-header {
+  border-bottom: 1px solid #ddd;
 }
