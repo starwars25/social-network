@@ -1,16 +1,21 @@
-<div class="post" id="post-<%= post.id %>"><p><strong><%= post.from.username %></strong></p>
+<div class="post" id="post-<%= post.id %>">
 
-  <p><%= post.content %></p>
-  <%= image_tag post.image.url, class: 'img-responsive img-thumbnail post_image' if post.image? %>
-  <br>
-  <% if post.from_id == @current_user.id || post.to_id == current_user.id %>
-      <%= link_to 'Delete', post_path(post, user: @current_user.id), method: :delete, class: 'btn btn-danger' %>
-  <% end %>
-  <p>Likes: <%= post.likes.count %></p>
-  <% if !post.liked?(current_user) %>
-    <%= link_to 'Like', likes_path(from_id: current_user.id, to_id: post.id), method: :post, remote: true %>
-  <% else %>
-      <%= link_to 'Unlike', unlike_path(from_id: current_user.id, to_id: post.id), method: :delete, remote: true %>
-  <% end %>
-  <hr>
+  <div class="row">
+    <div class="col-md-2">
+      <strong><%= post.from.username %></strong>
+    </div>
+    <div class="col-md-10">
+      <p><%= post.content %></p>
+      <%= image_tag post.image.url, class: 'img-responsive img-thumbnail post_image' if post.image? %>
+      <% if post.from_id == @current_user.id || post.to_id == current_user.id %>
+          <%= link_to 'Delete', post_path(post, user: @current_user.id), method: :delete, class: 'btn btn-danger delete' %>
+          <% end %>
+      <p>Likes: <%= post.likes.count %></p>
+      <% if !post.liked?(current_user) %>
+          <%= link_to 'Like', likes_path(from_id: current_user.id, to_id: post.id), method: :post, remote: true %>
+          <% else %>
+          <%= link_to 'Unlike', unlike_path(from_id: current_user.id, to_id: post.id), method: :delete, remote: true %>
+          <% end %>
+    </div>
+  </div>
 </div>

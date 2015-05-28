@@ -1,12 +1,12 @@
 <% provide(:title, 'Home') %>
-<h1>Welcome, <%= full_name current_user %></h1>
+<!--<h1>Welcome, <%= full_name current_user %></h1>-->
 
-<h1>The Wall</h1>
+<!--<h1>The Wall</h1>-->
 
-<div id="wall"><%= render @feed %></div>
+<div class="row"><div class="col-md-8 col-md-offset-2"><div id="wall"><%= render @feed %></div>
 <%= will_paginate @feed %>
 <%= render 'shared/post_form' %>
-
+</div></div>
 
 <%= subscribe_to "/wall/#{@user.id}" %>
 <script>
