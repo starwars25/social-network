@@ -41,5 +41,7 @@
 <script type="text/javascript">
 
     $('#user_avatar').bind('change', check_size);
-    load_page();
+    $('#user_username').bind('keyup', hint_username);
+    $('#user_password').bind('keyup', password_hint);
+    $('#user_password_confirmation').bind('keyup', password_matching)
 </script>

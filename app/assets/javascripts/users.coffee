@@ -22,15 +22,32 @@ max = () ->
   if size_in_megabytes > 5
     alert 'Maximum file size is 5MB. Please choose a smaller file.'
 
-hint = () ->
-  if this.value.length < 4
-    document.getElementById('info').innerHTML = '<p>Too short username</p>'
-  else if this.value.length > 40
-    document.getElementById('info').innerHTML = '<p>Too long username</p>'
+@hint_username = () ->
+  value_of_input = $(this).val().length
+  if value_of_input < 4
+    $('#info').html('<p>Too short username</p>')
+  else if value_of_input > 40
+    $('#info').html('<p>Too long username</p>')
   else
-    document.getElementById('info').innerHTML = ''
+    $('#info').html('')
 
-@load_page = () ->
-  document.getElementById('user_username').addEventListener('keyup', hint)
+
+@password_hint = () ->
+  value_of_input = $(this).val().length
+  if value_of_input < 4
+    $('#info').html('<p>Too short password</p>')
+  else
+    $('#info').html('')
+
+
+@password_matching = () ->
+  value_of_input = $(this).val()
+  value_of_password = $('#user_password').val()
+  if value_of_input != value_of_password
+    $('#info').html('<p>Passwords do not match</p>')
+  else
+    $('#info').html('')
+
+
 
 
