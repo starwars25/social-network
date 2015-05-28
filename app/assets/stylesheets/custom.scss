@@ -45,7 +45,8 @@ tr > td {
 
 .post {
 //  border-bottom: 1px solid;
-  margin-top: 10px;
+//  margin-top: 10px;
+  padding: 10px 0 10px 0;
   border-bottom: 1px solid #ddd;
 
 }
@@ -65,4 +66,9 @@ tr > td {
 
 .main-header {
   border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.pagination {
+  margin-bottom: 0;
 }
