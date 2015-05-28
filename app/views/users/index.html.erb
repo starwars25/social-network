@@ -9,25 +9,6 @@
 <%= will_paginate @users %>
 
 <script>
-    var max, maximum;
-
-    max = function () {
-        var output;
-        output = 0;
-        $('.user-tile').each(function () {
-            var h;
-            h = $(this).height();
-            if (h > output) {
-                return output = h;
-            }
-        });
-        return output;
-    };
-
-    maximum = max();
-
-    $('.user-tile').each(function () {
-        return $(this).height(maximum);
-    });
+    equalize();
 
 </script>
