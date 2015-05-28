@@ -2,9 +2,11 @@
 <% unless dialog.members.count < 3 %>
     <%= link_to 'Quit dialog', quit_dialog_path(user_id: current_user.id, dialog_id: dialog.id), method: :post %>
 <% end %>
-<div id="chat-scroll"><table id="chat" class="table">
-  <%= render dialog.messages %>
-</table></div>
+<div id="chat-scroll">
+  <table id="chat" class="table">
+    <%= render dialog.messages %>
+  </table>
+</div>
 <%= subscribe_to "/dialogs/#{dialog.id}" %>
 <div id="message-form">
   <%= render 'layouts/message_form' %>
@@ -13,13 +15,5 @@
     PrivatePub.subscribe('/dialogs/<%= dialog.id %>', function (data, channel) {
         $('#chat').append(formInput(data));
     });
-    function formInput(data) {
-        var output = '<tr><td>' + data.message.from + '</td><td>' + data.message.content + '</td></tr>';
-        return output
-    }
-    $('#message_content').keypress(function (e) {
-        if (e.which === 13) {
-            return $('#new_message').submit();
-        }
-    });
+    $('#message_content').keypress(check_key);
 </script>

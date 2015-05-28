@@ -2,5 +2,6 @@
     <h1>Sorry, no user with such email: <%= params[:search][:email] %></h1>
 <% else %>
     <h1>Results</h1>
-    <%= render @user %>
+    <h3><%= link_to full_name(@user), @user %></h3>
+    <%= image_tag @user.avatar.url if @user.avatar? %>
 <% end %>

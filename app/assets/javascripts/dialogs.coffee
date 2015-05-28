@@ -3,3 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
+@formInput = (data) ->
+  "<tr><td>#{data.message.from}</td><td>#{data.message.content}</td></tr>"
+
+#alert 'Hello, world'
+@check_key = (e) ->
+  if e.which == 13
+    $('#new_message').submit()
