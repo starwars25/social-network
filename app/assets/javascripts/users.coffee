@@ -22,3 +22,15 @@ max = () ->
   if size_in_megabytes > 5
     alert 'Maximum file size is 5MB. Please choose a smaller file.'
 
+hint = () ->
+  if this.value.length < 4
+    document.getElementById('info').innerHTML = '<p>Too short username</p>'
+  else if this.value.length > 40
+    document.getElementById('info').innerHTML = '<p>Too long username</p>'
+  else
+    document.getElementById('info').innerHTML = ''
+
+@load_page = () ->
+  document.getElementById('user_username').addEventListener('keyup', hint)
+
+
