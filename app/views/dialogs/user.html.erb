@@ -1,11 +1,9 @@
 <% provide(:title, "#{@user.username}'s dialogs") %>
 <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h1>Your dialogs</h1></div>
-</div>
-<div class="row">
   <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
     <% if @user.dialogs.any? %>
-        <ul>
+        <h1>Your dialogs</h1>
+        <ul class="list-unstyled">
           <% @user.dialogs.each do |dialog| %>
               <li><%= link_to dialog.name, dialog_path(dialog.id), remote: true %></li>
           <% end %>
