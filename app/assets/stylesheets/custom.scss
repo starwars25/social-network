@@ -4,6 +4,7 @@ $navbar-default-link-color: #fff;
 $navbar-default-link-hover-color: #4093d9;
 $link-color: $navbar-default-bg;
 $btn-primary-bg: $navbar-default-bg;
+$pagination-active-bg: $navbar-default-bg;
 @import "bootstrap";
 
 
@@ -77,4 +78,9 @@ tr > td {
 .pagination {
   margin-bottom: 0;
   margin-top: 5px;
+
+}
+
+.navbar {
+  border-radius: 0;
 }

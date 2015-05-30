@@ -25,9 +25,9 @@ max = () ->
 @hint_username = () ->
   value_of_input = $(this).val().length
   if value_of_input < 4
-    $('#info').html('<p>Too short username</p>')
+    $('#info').html('<div class= "alert alert-danger">Too short username</div>')
   else if value_of_input > 40
-    $('#info').html('<p>Too long username</p>')
+    $('#info').html('<div class= "alert alert-danger">Too long username</div>')
   else
     $('#info').html('')
 
@@ -35,7 +35,7 @@ max = () ->
 @password_hint = () ->
   value_of_input = $(this).val().length
   if value_of_input < 4
-    $('#info').html('<p>Too short password</p>')
+    $('#info').html('<div class= "alert alert-danger">Too short password</div>')
   else
     $('#info').html('')
 
@@ -44,7 +44,7 @@ max = () ->
   value_of_input = $(this).val()
   value_of_password = $('#user_password').val()
   if value_of_input != value_of_password
-    $('#info').html('<p>Passwords do not match</p>')
+    $('#info').html('<div class= "alert alert-danger">Passwords do not match</div>')
   else
     $('#info').html('')
 

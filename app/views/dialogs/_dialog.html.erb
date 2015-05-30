@@ -14,6 +14,7 @@
 <script>
     PrivatePub.subscribe('/dialogs/<%= dialog.id %>', function (data, channel) {
         $('#chat').append(formInput(data));
+        $('#chat-scroll').scrollTop(document.getElementById('chat-scroll').scrollHeight);
     });
     $('#message_content').keypress(check_key);
 </script>
