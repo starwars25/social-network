@@ -36,7 +36,7 @@ class DialogsController < ApplicationController
 
       dialog.add_members users
       dialog.update_attribute(:last_message_send, Time.zone.now)
-      redirect_to dialog
+      redirect_to dialogs_user_path(current_user)
     else
       dialog = Dialog.create
       user_one = User.find_by(id: params[:from])
@@ -45,7 +45,7 @@ class DialogsController < ApplicationController
       dialog.update_attribute(:name, "#{user_one.username} #{user_two.username}")
       dialog.update_attribute(:last_message_send, Time.zone.now)
       flash.now[:success] = 'Dialog successfully created!'
-      redirect_to dialog
+      redirect_to dialogs_user_path(current_user)
     end
   end
 

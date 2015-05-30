@@ -1,4 +1,9 @@
-$font-size-base: 14px;
+$font-size-base: 16px;
+$navbar-default-bg: #31568c;
+$navbar-default-link-color: #fff;
+$navbar-default-link-hover-color: #4093d9;
+$link-color: $navbar-default-bg;
+$btn-primary-bg: $navbar-default-bg;
 @import "bootstrap";
 
 

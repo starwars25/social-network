@@ -3,11 +3,11 @@
   <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
     <% if @user.dialogs.any? %>
         <h1>Your dialogs</h1>
-        <ul class="list-unstyled">
+        <div class="list-group">
           <% @user.dialogs.each do |dialog| %>
-              <li><%= link_to dialog.name, dialog_path(dialog.id), remote: true %></li>
+              <%= link_to dialog.name, dialog_path(dialog.id), class: 'list-group-item', remote: true %>
           <% end %>
-        </ul>
+        </div>
     <% else %>
         <h1>You have no dialogs</h1>
     <% end %>
