@@ -48,6 +48,12 @@ max = () ->
   else
     $('#info').html('')
 
+@form_input = (data) ->
+  output = "<div class=\"row\"><div class=\"col-md-2\"><strong>#{data.post.from}</strong></div><div class=\"col-md-10\"><p>#{data.post.content}</p></div></div>"
 
+
+@check_key = (e) ->
+  if e.which == 13
+    $('#new_post').submit()
 
 

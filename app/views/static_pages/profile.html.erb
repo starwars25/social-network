@@ -32,15 +32,11 @@
 <%= subscribe_to "/wall/#{@user.id}" %>
 <script>
     PrivatePub.subscribe('/wall/<%= @user.id %>', function (data, channel) {
-        $('#wall').prepend(formInput(data));
+        $('#wall').prepend(form_input(data));
     });
-    form_input = function (data) {
-        var output;
-        return output = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><img src=\"" + data.post.image + "\" class=\"img-responsive img-thumbnail post_image\" /><hr></div>";
-    };
-    $('#post_content').keypress(function (e) {
-        if (e.which === 13) {
-            return $('#new_post').submit();
-        }
-    });
+//    form_input = function (data) {
+//        var output;
+//        return output = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><img src=\"" + data.post.image + "\" class=\"img-responsive img-thumbnail post_image\" /><hr></div>";
+//    };
+    $('#post_content').keypress(check_key);
 </script>

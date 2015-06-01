@@ -21,9 +21,5 @@
         var output;
         return output = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><img src=\"" + data.post.image + "\" class=\"img-responsive img-thumbnail post_image\" /><hr></div>";
     };
-    $('#post_content').keypress(function (e) {
-        if (e.which === 13) {
-            return $('#new_post').submit();
-        }
-    });
+    $('#post_content').keypress(check_key);
 </script>
