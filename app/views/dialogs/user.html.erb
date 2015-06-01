@@ -5,7 +5,7 @@
         <h1>Your dialogs</h1>
         <div class="list-group">
           <% @user.dialogs.each do |dialog| %>
-              <%= link_to dialog.name, dialog_path(dialog.id), class: 'list-group-item', remote: true %>
+              <%= link_to dialog_name(dialog), dialog_path(dialog.id), class: 'list-group-item', remote: true %>
           <% end %>
         </div>
     <% else %>

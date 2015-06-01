@@ -10,4 +10,12 @@ module ApplicationHelper
       user.username
     end
   end
+
+  def dialog_name(dialog)
+    if dialog.members.count > 2
+      dialog.name
+    else
+      dialog.members.each { |member| return member.username unless member == current_user}
+    end
+  end
 end
