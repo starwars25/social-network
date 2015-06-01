@@ -1,5 +1,6 @@
 class SearchsController < ApplicationController
   before_action :is_logged_in?
+
   def home
 
   end

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :edit, :create, :update]
   resources :friend_requests, only: [:create, :update]
   resources :posts, only: [:create, :destroy]
-  resources :dialogs, only: [:create, :update, :destroy, :new]
+  resources :dialogs, only: [:create, :update, :new]
   resources :messages, only: [:create]
   resources :likes, only: [:create]
 

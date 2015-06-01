@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
     @users = User.all
     @friends = current_user.friends unless current_user.nil?
     @user = current_user
-    @feed = current_user.feed.paginate(page: params[:page])
+    @feed = current_user.feed.paginate(page: params[:page]) # Paginate feed
   end
 
   def profile

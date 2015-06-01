@@ -11,7 +11,7 @@ class DialogsController < ApplicationController
   end
 
   def create
-    if params[:multi] == 'true'
+    if params[:multi] == 'true' # Dialog with more than two members
       dialog = Dialog.create(name: params[:dialog][:name])
       input = params[:dialog][:string].split
       users = []
@@ -56,11 +56,8 @@ class DialogsController < ApplicationController
     end
   end
 
-  def destroy
 
-  end
-
-  def user
+  def user # All dialogs which belong to current user
     @user = User.find_by(id: params[:id])
   end
 
@@ -72,7 +69,7 @@ class DialogsController < ApplicationController
   end
 
   private
-  def user_is_normal?
+  def user_is_normal? # Protection
     unless current_user.id.to_s == params[:user_id]
       flash.now[:danger] = 'We think that you are a hacker'
       redirect_to root_url

@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     if @message.save
       Dialog.find(params[:message][:dialog_id]).update_attribute(:last_message_send, Time.zone.now)
+      # Publish to channel. Used to implement real-time updates
       PrivatePub.publish_to("/dialogs/#{params[:message][:dialog_id]}", message: { content: @message.content, from: @message.user.username })
     end
     respond_to do |format|

@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   private
-  def valid_user?
+  def valid_user? # Check if current user can delete posts
     redirect_to root_url unless @current_user.id.to_s == params[:user] || Post.find_by(id: params[:id]).to.id.to_s == params[:user]
   end
 end

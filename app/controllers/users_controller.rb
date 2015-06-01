@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def index
+  def index # All users
     @users = User.paginate(page: params[:page], per_page: 8)
   end
 
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def unfriend
+  def unfriend # Remove friend
     User.find_by(id: params[:one]).unfriend(User.find_by(id: params[:two]))
     flash[:success] = 'Friend removed'
     redirect_to root_url
