@@ -2,8 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-form_input = (data) ->
-  output = "<div class=\"post\"><p><strong>#{data.post.from}</strong></p><p>#{data.post.content}</p><img src=\"#{data.post.image}\" class=\"img-responsive img-thumbnail\" /><hr></div>"
 
-
-#  return ouput = "<div class=\"post\"><p><strong>" + data.post.from + "</strong></p><p>" + data.post.content + "</p><hr></div>";
+# Check size of file
+@check_size = () ->
+  size_in_megabytes = this.files[0].size / 1024 / 1024
+  if size_in_megabytes > 5
+    alert 'Maximum file size is 5MB. Please choose a smaller file.'
