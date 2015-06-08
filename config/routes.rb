@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
   get 'profile' => 'static_pages#profile'
   post 'unlike' => 'likes#destroy'
+  get 'client/users' => 'users#java_client'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

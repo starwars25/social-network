@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :is_logged_in?, except: [:new, :create, :edit, :update]
+  before_action :is_logged_in?, except: [:new, :create, :edit, :update, :java_client]
 
   def new
     @user = User.new
@@ -45,6 +45,11 @@ class UsersController < ApplicationController
     User.find_by(id: params[:one]).unfriend(User.find_by(id: params[:two]))
     flash[:success] = 'Friend removed'
     redirect_to root_url
+  end
+
+  def java_client
+    @users = User.all
+    render xml: @users.to_xml
   end
 
   private
