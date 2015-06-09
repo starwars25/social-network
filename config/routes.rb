@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'profile' => 'static_pages#profile'
   post 'unlike' => 'likes#destroy'
   get 'client/users' => 'users#java_client'
+  get 'client/messages' => 'messages#java_client'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

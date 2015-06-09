@@ -15,6 +15,11 @@ class MessagesController < ApplicationController
     end
   end
 
+  def java_client
+    @messages = Message.all
+    render xml: @messages.to_xml
+  end
+
   private
   def valid_user_and_dialog
     user = User.find_by(id: params[:message][:user_id])
