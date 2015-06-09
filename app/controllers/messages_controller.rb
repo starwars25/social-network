@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :valid_user_and_dialog, only: [:create]
-  before_action :is_logged_in?
+  before_action :is_logged_in?, except: [:java_client]
   after_action :send_notifications, only: [:create]
 
   def create
