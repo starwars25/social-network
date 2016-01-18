@@ -1,6 +1,6 @@
 # Social Network
 
-This application on [Heroku](https://www.heroku.com/): [Social Network](http://nure-social-network.herokuapp.com/).
+This application on [Heroku](https://www.heroku.com/): [Social Network](http://nure-social-network.herokuapp.com/). The application is written in **Ruby on Rails**.
 
 This is a prototype of a Social Network Web app. The idea is Facebook-based Social Network. Social Network by now has the following functionality:
 
@@ -9,7 +9,6 @@ This is a prototype of a Social Network Web app. The idea is Facebook-based Soci
 * Signing in (Session sign in or remember me)
 * Changing password
 * View users
-* Search users
 * Search users
 * Send friend request to users
 * Confirm/Decline friend request
